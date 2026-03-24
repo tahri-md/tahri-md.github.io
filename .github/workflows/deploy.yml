@@ -25,8 +25,12 @@ jobs:
         run: bun run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          cname: tahri-md.github.io
+        run: |
+          cd out
+          touch .nojekyll
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git init
+          git add -A
+          git commit -m "Deploy: $(date)"
+          git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:gh-pages
