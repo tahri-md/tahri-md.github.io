@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.grid-bg {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.15;
+  background-image:
+    linear-gradient(to right, #8882 1px, transparent 1px),
+    linear-gradient(to bottom, #8882 1px, transparent 1px);
+  background-size: 40px 40px;
+}
