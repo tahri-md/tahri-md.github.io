@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.grid-bg {
+  background-image: 
+    linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0.15) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.15) 75%, rgba(255, 255, 255, 0.15) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0.15) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.15) 75%, rgba(255, 255, 255, 0.15) 76%, transparent 77%, transparent);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 0;
+}
+
+@supports (color: hsl(from red h s l)) {
+  .grid-bg {
+    background-image: 
+      linear-gradient(0deg, transparent 24%, color-mix(in srgb, currentColor 15%) 25%, color-mix(in srgb, currentColor 15%) 26%, transparent 27%, transparent 74%, color-mix(in srgb, currentColor 15%) 75%, color-mix(in srgb, currentColor 15%) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, color-mix(in srgb, currentColor 15%) 25%, color-mix(in srgb, currentColor 15%) 26%, transparent 27%, transparent 74%, color-mix(in srgb, currentColor 15%) 75%, color-mix(in srgb, currentColor 15%) 76%, transparent 77%, transparent);
+  }
+}

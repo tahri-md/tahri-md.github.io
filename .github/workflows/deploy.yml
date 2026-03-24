@@ -13,6 +13,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -26,11 +28,9 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          cd out
-          touch .nojekyll
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
-          git init
-          git add -A
-          git commit -m "Deploy: $(date)"
-          git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:gh-pages
+          git add out/ -f
+          git commit -m "build: deploy static site" || echo "No changes to commit"
+          git push
+
