@@ -1,8 +1,22 @@
 "use client"
+
 import { cn } from "@/utils/utils"
 import { useState } from "react"
 
-const projects = [
+interface Project {
+  title: string
+  type: string
+  description: string
+  tech: string[]
+  link: string
+  span: string
+}
+
+const SECTION_ID = "projects"
+const SECTION_TITLE = "FEATURED PROJECTS"
+const SECTION_SUBTITLE = "A selection of recent projects spanning web applications, design systems, and digital experiences."
+
+const PROJECTS: Project[] = [
   {
     title: "QuerySence",
     type: "Full Stack Platform",
@@ -27,7 +41,7 @@ const projects = [
     description:
       "Centralized API gateway handling routing, authentication, and request filtering in a microservices architecture.",
     tech: ["Spring Cloud Gateway", "JWT", "Microservices"],
-    link: "#",
+    link: "https://github.com/tahri-md/apigateway",
     span: "col-span-1 row-span-1",
   },
   {
@@ -36,7 +50,7 @@ const projects = [
     description:
       "Distributed cache system with consistent hashing, replication, LRU/LFU eviction, and pub/sub messaging.",
     tech: ["Go", "Gin", "Distributed Systems"],
-    link: "#",
+    link: "https://github.com/tahri-md/bolt",
     span: "col-span-2 row-span-1",
   },
   {
@@ -45,40 +59,30 @@ const projects = [
     description:
       "Deep learning pipeline for Arabic manuscript OCR using Transformers and custom preprocessing.",
     tech: ["PyTorch", "Transformers", "OCR", "NLP"],
-    link: "#",
+    link: "https://github.com/tahri-md/ScriptFormer",
     span: "col-span-1 row-span-1",
   },
 ]
 
-export default function WorkSection() {
-    return (
-        <div className="flex flex-col justify-center w-full min-h-screen p-6 gap-12">
-            <div className="flex flex-row justify-between">
-                <h2 className="text-5xl text-neutral-300 text-muted-foreground/60 tracking-wide ">FEATURED PROJECTS</h2>
-                <p className="font-mono text-neutral-700 text-xs max-w-md">A selection of recent projects spanning web applications, design systems, and digital experiences.</p>
-            </div>
-            <div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[180px] md:auto-rows-[200px]">
-                    {projects.map((p, i) => (
-                        <WorkCard key={i} project={p} alwaysActive={i === 0} />
-                    ))}
-                </div>
-
-            </div>
-        </div>
-    )
+function SectionHeader() {
+  return (
+    <div className="flex flex-col md:flex-row md:justify-between gap-6">
+      <h2 className="text-5xl md:text-6xl font-[var(--font-bebas)] text-neutral-900 dark:text-neutral-50 tracking-tight">
+        {SECTION_TITLE}
+      </h2>
+      <p className="font-mono text-xs text-neutral-600 dark:text-neutral-400 max-w-sm leading-relaxed">
+        {SECTION_SUBTITLE}
+      </p>
+    </div>
+  )
 }
 
-type Project = {
-  title: string
-  type: string
-  description: string
-  tech: string[]
-  link: string
-  span: string
+interface WorkCardProps {
+  project: Project
+  alwaysActive?: boolean
 }
 
-function WorkCard({ project, alwaysActive = false }: { project: Project; alwaysActive?: boolean }) {
+function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const isActive = alwaysActive || isHovered
 
@@ -90,27 +94,30 @@ function WorkCard({ project, alwaysActive = false }: { project: Project; alwaysA
       className={cn(
         "group relative flex flex-col justify-between p-6 border transition-all duration-500 overflow-hidden cursor-pointer",
         project.span,
-        isActive ? "border-orange-500" : "border-neutral-300/60"
+        isActive
+          ? "border-orange-500 dark:border-orange-500"
+          : "border-neutral-300 dark:border-neutral-700"
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
         className={cn(
-          "absolute inset-0 bg-orange-500/10 transition-opacity duration-500",
+          "absolute inset-0 transition-opacity duration-500",
+          "bg-orange-500/5 dark:bg-orange-500/10",
           isActive ? "opacity-100" : "opacity-0"
         )}
       />
 
       <div className="relative z-10">
-        <span className="font-mono text-xs text-neutral-500">
+        <span className="font-mono text-xs text-neutral-500 dark:text-neutral-500">
           {project.type}
         </span>
 
         <h3
           className={cn(
-            "text-2xl md:text-3xl transition-colors duration-300 mt-5",
-            isActive ? "text-orange-500" : "text-neutral-300"
+            "text-2xl md:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-5 tracking-tight",
+            isActive ? "text-orange-500" : "text-neutral-900 dark:text-neutral-100"
           )}
         >
           {project.title}
@@ -120,7 +127,7 @@ function WorkCard({ project, alwaysActive = false }: { project: Project; alwaysA
       <div className="relative z-10 space-y-3">
         <p
           className={cn(
-            "text-sm font-mono text-neutral-400 transition-all duration-500 line-clamp-2",
+            "text-sm font-mono text-neutral-600 dark:text-neutral-400 transition-all duration-500 line-clamp-2",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           )}
         >
@@ -134,7 +141,10 @@ function WorkCard({ project, alwaysActive = false }: { project: Project; alwaysA
           )}
         >
           {project.tech.map((t) => (
-            <span key={t} className="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">
+            <span
+              key={t}
+              className="text-xs px-2 py-1 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded font-mono"
+            >
               {t}
             </span>
           ))}
@@ -143,7 +153,7 @@ function WorkCard({ project, alwaysActive = false }: { project: Project; alwaysA
 
       <div
         className={cn(
-          "absolute top-0 right-0 w-12 h-12 transition-all duration-500",
+          "absolute top-0 right-0 w-12 h-12 transition-all duration-500 pointer-events-none",
           isActive ? "opacity-100" : "opacity-0"
         )}
       >
@@ -151,5 +161,28 @@ function WorkCard({ project, alwaysActive = false }: { project: Project; alwaysA
         <div className="absolute top-0 right-0 w-[1px] h-full bg-orange-500" />
       </div>
     </a>
+  )
+}
+
+function ProjectGrid() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[220px]">
+      {PROJECTS.map((project, i) => (
+        <div key={project.title} className={`${project.span}`}>
+          <WorkCard project={project} alwaysActive={i === 0} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default function WorkSection() {
+  return (
+    <section id={SECTION_ID} className="relative w-full py-32 px-6 md:px-12 lg:px-28">
+      <div className="max-w-7xl mx-auto space-y-16">
+        <SectionHeader />
+        <ProjectGrid />
+      </div>
+    </section>
   )
 }

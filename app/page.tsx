@@ -1,3 +1,4 @@
+import { ColophonSection } from "@/components/colophon-section";
 import HeroSection from "@/components/HeroSection";
 import { PrinciplesSection } from "@/components/principles-section";
 import SplitFlapText from "@/components/SplitFlapText";
@@ -9,6 +10,7 @@ export default function Home() {
       <HeroSection />
       <WorkSection />
       <PrinciplesSection />
+      <ColophonSection />
     </div>
   )
 }
