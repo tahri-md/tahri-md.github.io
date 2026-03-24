@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "deploy": "next build && gh-pages -d out",
+    "deploy": "next build && touch out/.nojekyll && gh-pages -d out -b main",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
