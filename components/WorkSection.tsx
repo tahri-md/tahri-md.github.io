@@ -24,7 +24,7 @@ const PROJECTS: Project[] = [
       "SQL analysis platform with AI-powered optimization, security scanning, and team collaboration features.",
     tech: ["Spring Boot", "PostgreSQL", "Next.js", "JWT", "Docker"],
     link: "https://github.com/tahri-md/querysence",
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
+    span: "col-span-2",
   },
   {
     title: "Verity",
@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
       "Blockchain verification system with ECDSA signatures, Merkle proofs, consensus mechanisms, and immutable audit trails.",
     tech: ["Go", "Gin", "GORM", "PostgreSQL", "Redis"],
     link: "https://github.com/tahri-md/verity",
-    span: "col-span-1 sm:col-span-2 lg:col-span-2",
+    span: "col-span-2",
   },
   {
     title: "JobPulse",
@@ -42,7 +42,7 @@ const PROJECTS: Project[] = [
       "Job scheduling and monitoring platform with retries, dead-letter queues, and distributed execution using Redis locks.",
     tech: ["Spring Boot", "Angular", "Redis", "Quartz", "Docker"],
     link: "https://github.com/tahri-md/jobpulse",
-    span: "col-span-1 sm:col-span-1 lg:col-span-1",
+    span: "col-span-1",
   },
   {
     title: "API Gateway",
@@ -51,7 +51,7 @@ const PROJECTS: Project[] = [
       "Centralized API gateway handling routing, authentication, and request filtering in a microservices architecture.",
     tech: ["Spring Cloud Gateway", "JWT", "Microservices"],
     link: "https://github.com/tahri-md/apigateway",
-    span: "col-span-1 sm:col-span-1 lg:col-span-1",
+    span: "col-span-1",
   },
   {
     title: "Synapse",
@@ -60,7 +60,7 @@ const PROJECTS: Project[] = [
       "Production-grade message queue broker with priority queues, consumer groups, dead-letter handling, and distributed processing.",
     tech: ["Spring Boot", "PostgreSQL", "Redis", "Flyway"],
     link: "https://github.com/tahri-md/synapse",
-    span: "col-span-1 sm:col-span-1 lg:col-span-1",
+    span: "col-span-1",
   },
   {
     title: "Bolt Cache System",
@@ -69,7 +69,7 @@ const PROJECTS: Project[] = [
       "Distributed cache system with consistent hashing, replication, LRU/LFU eviction, and pub/sub messaging.",
     tech: ["Go", "Gin", "Distributed Systems"],
     link: "https://github.com/tahri-md/bolt",
-    span: "col-span-1 sm:col-span-1 lg:col-span-1",
+    span: "col-span-1",
   },
   {
     title: "ScriptFormer",
@@ -78,7 +78,7 @@ const PROJECTS: Project[] = [
       "Deep learning pipeline for Arabic manuscript OCR using Transformers and custom preprocessing.",
     tech: ["PyTorch", "Transformers", "OCR", "NLP"],
     link: "https://github.com/tahri-md/ScriptFormer",
-    span: "col-span-1 sm:col-span-1 lg:col-span-1",
+    span: "col-span-1",
   },
 ]
 
@@ -110,7 +110,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group relative flex flex-col justify-between p-3 sm:p-4 md:p-5 lg:p-6 border transition-all duration-500 overflow-hidden cursor-pointer",
+        "group relative flex flex-col justify-between p-4 md:p-5 lg:p-6 border transition-all duration-500 overflow-hidden cursor-pointer",
         project.span,
         isActive
           ? "border-orange-500 dark:border-orange-500"
@@ -128,13 +128,13 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       />
 
       <div className="relative z-10">
-        <span className="font-mono text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-500">
+        <span className="font-mono text-xs text-neutral-500 dark:text-neutral-500">
           {project.type}
         </span>
 
         <h3
           className={cn(
-            "text-lg sm:text-2xl md:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-3 sm:mt-4 md:mt-5 tracking-tight line-clamp-2",
+            "text-xl md:text-2xl lg:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-4 tracking-tight line-clamp-2",
             isActive ? "text-orange-500" : "text-neutral-900 dark:text-neutral-100"
           )}
         >
@@ -142,10 +142,10 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         </h3>
       </div>
 
-      <div className="relative z-10 space-y-2 sm:space-y-3">
+      <div className="relative z-10 space-y-2 md:space-y-3">
         <p
           className={cn(
-            "text-xs sm:text-sm font-mono text-neutral-600 dark:text-neutral-400 transition-all duration-500 line-clamp-2",
+            "text-xs md:text-sm font-mono text-neutral-600 dark:text-neutral-400 transition-all duration-500 line-clamp-2",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           )}
         >
@@ -154,14 +154,14 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
 
         <div
           className={cn(
-            "flex flex-wrap gap-2 transition-all duration-500",
+            "flex flex-wrap gap-1.5 md:gap-2 transition-all duration-500",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           )}
         >
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded font-mono"
+              className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded font-mono"
             >
               {t}
             </span>
@@ -184,7 +184,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
 
 function ProjectGrid() {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 auto-rows-[140px] sm:auto-rows-[160px] md:auto-rows-[180px] lg:auto-rows-[220px]">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 auto-rows-[220px]">
       {PROJECTS.map((project, i) => (
         <div key={project.title} className={`${project.span}`}>
           <WorkCard project={project} alwaysActive={i === 0} />
