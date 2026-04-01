@@ -24,7 +24,7 @@ const PROJECTS: Project[] = [
       "SQL analysis platform with AI-powered optimization, security scanning, and team collaboration features.",
     tech: ["Spring Boot", "PostgreSQL", "Next.js", "JWT", "Docker"],
     link: "https://github.com/tahri-md/querysence",
-    span: "col-span-2",
+    span: "col-span-1 md:col-span-2",
   },
   {
     title: "Verity",
@@ -33,7 +33,7 @@ const PROJECTS: Project[] = [
       "Blockchain verification system with ECDSA signatures, Merkle proofs, consensus mechanisms, and immutable audit trails.",
     tech: ["Go", "Gin", "GORM", "PostgreSQL", "Redis"],
     link: "https://github.com/tahri-md/verity",
-    span: "col-span-2",
+    span: "col-span-1 md:col-span-2",
   },
   {
     title: "JobPulse",
