@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Amine Tahri | Full Stack Engineer",
-  description: "Portfolio showcasing full-stack engineering projects, approaching distributed systems, data-driven solutions, and clean code practices.",
+  title: "Tahri | Full Stack Engineer",
+  description: "Full stack engineer crafting digital experiences with meticulous attention to detail, accessibility, and performance.",
 };
 
 export default function RootLayout({
@@ -25,9 +25,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-white dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">{children}</body>
     </html>
   );
 }

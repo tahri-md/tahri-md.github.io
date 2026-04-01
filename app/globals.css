@@ -1,22 +1,55 @@
 @import "tailwindcss";
 
-html,
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
 .grid-bg {
-  background-image: 
-    linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0.15) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.15) 75%, rgba(255, 255, 255, 0.15) 76%, transparent 77%, transparent),
-    linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.15) 25%, rgba(255, 255, 255, 0.15) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.15) 75%, rgba(255, 255, 255, 0.15) 76%, transparent 77%, transparent);
-  background-size: 40px 40px;
-  background-position: 0 0, 0 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(to right, #0001 1px, transparent 1px),
+    linear-gradient(to bottom, #0001 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-@supports (color: hsl(from red h s l)) {
+@media (prefers-color-scheme: dark) {
   .grid-bg {
-    background-image: 
-      linear-gradient(0deg, transparent 24%, color-mix(in srgb, currentColor 15%) 25%, color-mix(in srgb, currentColor 15%) 26%, transparent 27%, transparent 74%, color-mix(in srgb, currentColor 15%) 75%, color-mix(in srgb, currentColor 15%) 76%, transparent 77%, transparent),
-      linear-gradient(90deg, transparent 24%, color-mix(in srgb, currentColor 15%) 25%, color-mix(in srgb, currentColor 15%) 26%, transparent 27%, transparent 74%, color-mix(in srgb, currentColor 15%) 75%, color-mix(in srgb, currentColor 15%) 76%, transparent 77%, transparent);
+    background-image:
+      linear-gradient(to right, #fff1 1px, transparent 1px),
+      linear-gradient(to bottom, #fff1 1px, transparent 1px);
   }
 }
