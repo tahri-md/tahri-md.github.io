@@ -60,9 +60,9 @@ const PRINCIPLES: Principle[] = [
 ]
 
 function useAnimatePrinciples(
-  sectionRef: React.RefObject<HTMLElement>,
-  headerRef: React.RefObject<HTMLDivElement>,
-  principlesRef: React.RefObject<HTMLDivElement>
+  sectionRef: React.RefObject<HTMLElement | null>,
+  headerRef: React.RefObject<HTMLDivElement | null>,
+  principlesRef: React.RefObject<HTMLDivElement | null>
 ) {
   useEffect(() => {
     if (!sectionRef.current || !headerRef.current || !principlesRef.current) return
@@ -97,8 +97,7 @@ function animateArticles(container: HTMLElement | null) {
 }
 
 interface SectionHeaderProps {
-  ref: React.RefObject<HTMLDivElement>
-  label: string
+  ref: React.RefObject<HTMLDivElement | null>
   title: string
 }
 

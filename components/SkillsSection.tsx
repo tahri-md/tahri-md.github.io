@@ -42,9 +42,9 @@ export default function SkillsSection() {
 
       {/* Clickable Indicator Dots Above */}
       <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none">
-        <dot className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator"></dot>
-        <dot className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-70" style={{animationDelay: '0.2s'}}></dot>
-        <dot className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-40" style={{animationDelay: '0.4s'}}></dot>
+        <div className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator"></div>
+        <div className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-70" style={{animationDelay: '0.2s'}}></div>
+        <div className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-40" style={{animationDelay: '0.4s'}}></div>
       </div>
 
       {/* Vertical Line Toggle */}
@@ -79,9 +79,9 @@ export default function SkillsSection() {
 
       {/* Clickable Indicator Dots Below */}
       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none">
-        <dot className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator" style={{animationDelay: '0.4s'}}></dot>
-        <dot className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-70" style={{animationDelay: '0.2s'}}></dot>
-        <dot className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-40"></dot>
+        <div className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator" style={{animationDelay: '0.4s'}}></div>
+        <div className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-70" style={{animationDelay: '0.2s'}}></div>
+        <div className="w-1 h-1 bg-orange-500 dark:bg-orange-400 rounded-full float-indicator opacity-40"></div>
       </div>
 
       {/* Skills Panel */}
