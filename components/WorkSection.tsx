@@ -84,11 +84,11 @@ const PROJECTS: Project[] = [
 
 function SectionHeader() {
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-5xl md:text-7xl font-[var(--font-bebas)] text-neutral-950 dark:text-neutral-50 tracking-tight leading-tight">
+    <div className="flex flex-col gap-3 sm:gap-4">
+      <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-[var(--font-bebas)] text-neutral-950 dark:text-neutral-50 tracking-tight leading-tight">
         {SECTION_TITLE}
       </h2>
-      <p className="font-mono text-base text-neutral-600 dark:text-neutral-400 max-w-2xl leading-relaxed">
+      <p className="font-mono text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
         {SECTION_SUBTITLE}
       </p>
     </div>
@@ -128,13 +128,13 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       />
 
       <div className="relative z-10">
-        <span className="font-mono text-xs text-neutral-500 dark:text-neutral-500">
+        <span className="font-mono text-[10px] sm:text-xs text-neutral-500 dark:text-neutral-500">
           {project.type}
         </span>
 
         <h3
           className={cn(
-            "text-2xl md:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-5 tracking-tight",
+            "text-lg sm:text-2xl md:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-3 sm:mt-4 md:mt-5 tracking-tight line-clamp-2",
             isActive ? "text-orange-500" : "text-neutral-900 dark:text-neutral-100"
           )}
         >
@@ -142,10 +142,10 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         </h3>
       </div>
 
-      <div className="relative z-10 space-y-3">
+      <div className="relative z-10 space-y-2 sm:space-y-3">
         <p
           className={cn(
-            "text-sm font-mono text-neutral-600 dark:text-neutral-400 transition-all duration-500 line-clamp-2",
+            "text-xs sm:text-sm font-mono text-neutral-600 dark:text-neutral-400 transition-all duration-500 line-clamp-2",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           )}
         >
@@ -161,7 +161,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-xs px-2 py-1 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded font-mono"
+              className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded font-mono"
             >
               {t}
             </span>
@@ -184,7 +184,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
 
 function ProjectGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[240px]">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 auto-rows-[180px] sm:auto-rows-[200px] md:auto-rows-[220px]">
       {PROJECTS.map((project, i) => (
         <div key={project.title} className={`${project.span}`}>
           <WorkCard project={project} alwaysActive={i === 0} />
@@ -196,10 +196,10 @@ function ProjectGrid() {
 
 export default function WorkSection() {
   return (
-    <section id={SECTION_ID} className="relative w-full py-24 md:py-32 px-6 md:px-12 lg:px-16">
+    <section id={SECTION_ID} className="relative w-full py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28">
       <div className="max-w-7xl mx-auto">
         <SectionHeader />
-        <div className="mt-16">
+        <div className="mt-12 sm:mt-14 md:mt-16 lg:mt-20">
           <ProjectGrid />
         </div>
       </div>

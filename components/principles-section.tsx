@@ -103,8 +103,8 @@ interface SectionHeaderProps {
 
 function SectionHeader({ ref, title }: SectionHeaderProps) {
   return (
-    <div ref={ref} className="mb-24">
-      <h2 className="font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight text-neutral-950 dark:text-neutral-50 leading-tight">
+    <div ref={ref} className="mb-16 sm:mb-20 md:mb-24">
+      <h2 className="font-[var(--font-bebas)] text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-neutral-950 dark:text-neutral-50 leading-tight">
         {title}
       </h2>
     </div>
@@ -121,11 +121,11 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
 
   return (
     <article className={`flex flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-      <span className="font-mono text-xs uppercase tracking-widest text-orange-500 mb-6">
+      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-orange-500 mb-3 sm:mb-4 md:mb-6">
         {principle.number} / {firstWord}
       </span>
 
-      <h3 className="font-[var(--font-bebas)] text-4xl md:text-6xl lg:text-8xl tracking-tight leading-none text-neutral-950 dark:text-neutral-50">
+      <h3 className="font-[var(--font-bebas)] text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-tight text-neutral-950 dark:text-neutral-50">
         {principle.titleParts.map((part, i) =>
           part.highlight ? (
             <HighlightText key={i} parallaxSpeed={0.6}>
@@ -137,11 +137,11 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
         )}
       </h3>
 
-      <p className="mt-8 max-w-md font-mono text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+      <p className="mt-4 sm:mt-6 md:mt-8 max-w-lg font-mono text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
         {principle.description}
       </p>
 
-      <div className="mt-10 h-[1px] bg-neutral-300 dark:bg-neutral-700 w-24 md:w-48" style={{ [isRight ? "marginRight" : "marginLeft"]: 0 }} />
+      <div className="mt-6 sm:mt-8 md:mt-10 h-[1px] bg-neutral-300 dark:bg-neutral-700 w-16 sm:w-20 md:w-24 lg:w-48" style={{ [isRight ? "marginRight" : "marginLeft"]: 0 }} />
     </article>
   )
 }
@@ -157,12 +157,12 @@ export function PrinciplesSection() {
     <section
       ref={sectionRef}
       id={SECTION_ID}
-      className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16"
+      className="relative py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28"
     >
-      <div className="max-w-7xl mx-auto pl-0 md:pl-12">
+      <div className="max-w-7xl mx-auto pl-0 md:pl-8 lg:pl-12">
         <SectionHeader ref={headerRef} title={SECTION_TITLE} />
 
-        <div ref={principlesRef} className="space-y-28 md:space-y-32">
+        <div ref={principlesRef} className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-28 xl:space-y-32">
           {PRINCIPLES.map((principle, index) => (
             <PrincipleCard key={principle.number} principle={principle} />
           ))}
