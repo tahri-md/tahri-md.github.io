@@ -11,10 +11,10 @@ const CTA_BUTTONS = [
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="relative w-full min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-20 sm:py-24 md:py-32">
+    <section id="hero" className="relative w-full min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 py-20 sm:py-24 md:py-32 overflow-hidden">
       <div className="grid-bg fixed inset-0 -z-10" aria-hidden="true" />
-      <div className="max-w-7xl mx-auto w-full flex flex-col gap-8 sm:gap-10 md:gap-12">
-        <div className="text-orange-500 h-6 sm:h-7 md:h-8">
+      <div className="max-w-7xl mx-auto w-full flex flex-col gap-8 sm:gap-10 md:gap-12 relative z-10">
+        <div className="text-purple-500 h-6 sm:h-7 md:h-8">
           <SplitFlapText text={GREETING} />
         </div>
         <div className="max-w-4xl">
@@ -32,8 +32,8 @@ export default function HeroSection() {
               href={button.href}
               className={`font-mono text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-3 transition-all duration-300 w-full sm:w-auto text-center sm:text-left ${
                 button.variant === "primary"
-                  ? "border-2 border-orange-500 text-orange-600 dark:text-orange-400 hover:bg-orange-500/10 dark:hover:bg-orange-500/20"
-                  : "text-neutral-700 dark:text-neutral-300 hover:text-orange-600 dark:hover:text-orange-400"
+                  ? "border-2 border-purple-500 text-purple-600 dark:text-purple-400 hover:bg-purple-500/10 dark:hover:bg-purple-500/20"
+                  : "text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400"
               }`}
             >
               {button.label}

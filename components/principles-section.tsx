@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react"
 import { HighlightText } from "@/components/highlight-text"
 import { animateInFromLeft } from "@/lib/animations"
+import { cn } from "@/utils/utils"
 import gsap from "gsap"
 
 interface TitlePart {
@@ -121,7 +122,7 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
 
   return (
     <article className={`flex flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-orange-500 mb-3 sm:mb-4 md:mb-6">
+      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-purple-500 mb-3 sm:mb-4 md:mb-6">
         {principle.number} / {firstWord}
       </span>
 
@@ -141,7 +142,7 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
         {principle.description}
       </p>
 
-      <div className="mt-6 sm:mt-8 md:mt-10 h-[1px] bg-neutral-300 dark:bg-neutral-700 w-16 sm:w-20 md:w-24 lg:w-48" style={{ [isRight ? "marginRight" : "marginLeft"]: 0 }} />
+      <div className={cn("mt-6 sm:mt-8 md:mt-10 h-[1px] bg-neutral-300 dark:bg-neutral-700 w-16 sm:w-20 md:w-24 lg:w-48", isRight ? "mr-0" : "ml-0")} />
     </article>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/utils/utils"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 interface Project {
   title: string
@@ -10,6 +10,10 @@ interface Project {
   tech: string[]
   link: string
   span: string
+}
+
+interface WorkSectionProps {
+  selectedSkills: Set<string>
 }
 
 const SECTION_ID = "projects"
@@ -113,7 +117,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         "group relative flex flex-col justify-between p-4 md:p-5 lg:p-6 border transition-all duration-500 overflow-hidden cursor-pointer",
         project.span,
         isActive
-          ? "border-orange-500 dark:border-orange-500"
+          ? "border-purple-500 dark:border-purple-500"
           : "border-neutral-300 dark:border-neutral-700"
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -122,7 +126,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       <div
         className={cn(
           "absolute inset-0 transition-opacity duration-500",
-          "bg-orange-500/5 dark:bg-orange-500/10",
+          "bg-purple-500/5 dark:bg-purple-500/10",
           isActive ? "opacity-100" : "opacity-0"
         )}
       />
@@ -135,7 +139,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         <h3
           className={cn(
             "text-xl md:text-2xl lg:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-4 tracking-tight line-clamp-2",
-            isActive ? "text-orange-500" : "text-neutral-900 dark:text-neutral-100"
+            isActive ? "text-purple-500" : "text-neutral-900 dark:text-neutral-100"
           )}
         >
           {project.title}
@@ -161,7 +165,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 rounded font-mono"
+              className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded font-mono"
             >
               {t}
             </span>
@@ -175,32 +179,59 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           isActive ? "opacity-100" : "opacity-0"
         )}
       >
-        <div className="absolute top-0 right-0 w-full h-[1px] bg-orange-500" />
-        <div className="absolute top-0 right-0 w-[1px] h-full bg-orange-500" />
+        <div className="absolute top-0 right-0 w-full h-[1px] bg-purple-500" />
+        <div className="absolute top-0 right-0 w-[1px] h-full bg-purple-500" />
       </div>
     </a>
   )
 }
 
-function ProjectGrid() {
+interface ProjectGridProps {
+  projects: Project[]
+}
+
+function ProjectGrid({ projects }: ProjectGridProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 auto-rows-[220px]">
-      {PROJECTS.map((project, i) => (
-        <div key={project.title} className={`${project.span}`}>
-          <WorkCard project={project} alwaysActive={i === 0} />
+      {projects.length > 0 ? (
+        projects.map((project, i) => (
+          <div
+            key={project.title}
+            className={cn(
+              project.span,
+              "transition-all duration-500 opacity-100"
+            )}
+          >
+            <WorkCard project={project} alwaysActive={i === 0} />
+          </div>
+        ))
+      ) : (
+        <div className="col-span-full flex items-center justify-center py-12">
+          <p className="font-mono text-sm text-neutral-500 dark:text-neutral-400">
+            No projects found with selected skills.
+          </p>
         </div>
-      ))}
+      )}
     </div>
   )
 }
 
-export default function WorkSection() {
+export default function WorkSection({ selectedSkills }: WorkSectionProps) {
+  const filteredProjects = useMemo(() => {
+    if (selectedSkills.size === 0) {
+      return PROJECTS
+    }
+    return PROJECTS.filter((project) =>
+      project.tech.some((t) => selectedSkills.has(t))
+    )
+  }, [selectedSkills])
+
   return (
     <section id={SECTION_ID} className="relative w-full py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28">
       <div className="max-w-7xl mx-auto">
         <SectionHeader />
         <div className="mt-12 sm:mt-14 md:mt-16 lg:mt-20">
-          <ProjectGrid />
+          <ProjectGrid projects={filteredProjects} />
         </div>
       </div>
     </section>
