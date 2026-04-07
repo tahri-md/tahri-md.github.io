@@ -11,6 +11,8 @@ export default {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         accent: '#f59e0b',
+        primary: '#1a1a1a',
+        secondary: '#2d2d2d',
       },
       fontFamily: {
         sans: 'var(--font-geist-sans)',

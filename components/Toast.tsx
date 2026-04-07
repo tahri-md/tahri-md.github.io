@@ -28,8 +28,8 @@ export function Toast({ message, isVisible, duration = 2000 }: ToastProps) {
     <div
       className={cn(
         "fixed bottom-6 right-6 z-50 px-4 py-3 rounded-lg font-mono text-sm transition-all duration-300 pointer-events-none",
-        "bg-black text-purple-500",
-        "border border-purple-500",
+        "bg-black text-amber-500",
+        "border border-amber-500",
         show
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-2"
@@ -39,7 +39,7 @@ export function Toast({ message, isVisible, duration = 2000 }: ToastProps) {
     >
       <div className="flex items-center gap-2">
         <svg
-          className="w-4 h-4 text-purple-500 flex-shrink-0"
+          className="w-4 h-4 text-amber-500 flex-shrink-0"
           fill="currentColor"
           viewBox="0 0 20 20"
         >

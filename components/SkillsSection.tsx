@@ -35,19 +35,19 @@ export default function SkillsSection({
   return (
     <div className="relative inline-block">
       <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none">
-        <div className="w-1 h-1 bg-purple-500 dark:bg-purple-400 rounded-full animate-float-dots"></div>
-        <div className="w-1 h-1 bg-purple-500 dark:bg-purple-400 rounded-full animate-float-dots-delay-200 opacity-70"></div>
-        <div className="w-1 h-1 bg-purple-500 dark:bg-purple-400 rounded-full animate-float-dots-delay-400 opacity-40"></div>
+        <div className="w-1 h-1 bg-amber-500 dark:bg-amber-400 rounded-full animate-float-dots"></div>
+        <div className="w-1 h-1 bg-amber-500 dark:bg-amber-400 rounded-full animate-float-dots-delay-200 opacity-70"></div>
+        <div className="w-1 h-1 bg-amber-500 dark:bg-amber-400 rounded-full animate-float-dots-delay-400 opacity-40"></div>
       </div>
 
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "w-1 md:w-1.5 h-24 md:h-32 rounded-full transition-all duration-500 cursor-pointer animate-pulse relative group",
-          "bg-gradient-to-b from-purple-400 via-purple-500 to-purple-600 dark:from-purple-500 dark:via-purple-600 dark:to-purple-700",
-          "hover:shadow-lg hover:shadow-purple-500/50 dark:hover:shadow-purple-600/50",
+          "bg-gradient-to-b from-yellow-400 via-amber-500 to-amber-600 dark:from-amber-500 dark:via-amber-600 dark:to-yellow-700",
+          "hover:shadow-lg hover:shadow-amber-500/50 dark:hover:shadow-amber-600/50",
           "animate-pulse-glow",
-          isOpen && "h-40 md:h-56 shadow-xl shadow-purple-500/60 dark:shadow-purple-600/60"
+          isOpen && "h-40 md:h-56 shadow-xl shadow-amber-500/60 dark:shadow-amber-600/60"
         )}
         aria-label="Click to view skills"
         title="Click to view skills"
@@ -55,22 +55,22 @@ export default function SkillsSection({
         <div
           className={cn(
             "absolute left-1/2 -translate-x-1/2 transition-all duration-500 whitespace-nowrap pointer-events-none",
-            "font-mono text-xs font-bold text-purple-600 dark:text-purple-400",
+            "font-mono text-xs font-bold text-amber-600 dark:text-amber-400",
             isOpen ? "top-1/2 -translate-y-1/2 opacity-100" : "top-2 md:top-3 opacity-60 group-hover:opacity-100"
           )}
         >
           <span className={cn(isOpen ? "block" : "hidden")}>SKILLS</span>
         </div>
 
-        <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 font-mono text-[10px] font-bold text-purple-600 dark:text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        <div className="absolute left-1/2 -translate-x-1/2 -bottom-8 font-mono text-[10px] font-bold text-amber-600 dark:text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
           CLICK ME
         </div>
       </button>
 
       <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none">
-        <div className="w-1 h-1 bg-purple-500 dark:bg-purple-400 rounded-full animate-float-dots-delay-400"></div>
-        <div className="w-1 h-1 bg-purple-500 dark:bg-purple-400 rounded-full animate-float-dots-delay-200 opacity-70"></div>
-        <div className="w-1 h-1 bg-purple-500 dark:bg-purple-400 rounded-full animate-float-dots opacity-40"></div>
+        <div className="w-1 h-1 bg-amber-500 dark:bg-amber-400 rounded-full animate-float-dots-delay-400"></div>
+        <div className="w-1 h-1 bg-amber-500 dark:bg-amber-400 rounded-full animate-float-dots-delay-200 opacity-70"></div>
+        <div className="w-1 h-1 bg-amber-500 dark:bg-amber-400 rounded-full animate-float-dots opacity-40"></div>
       </div>
 
       {isOpen && (
@@ -95,8 +95,8 @@ export default function SkillsSection({
                   className={cn(
                     "px-3 py-1.5 text-xs font-mono rounded-md whitespace-nowrap transition-all duration-300 border",
                     isSelected
-                      ? "bg-purple-500 dark:bg-purple-500 text-white border-purple-500"
-                      : "bg-purple-100/80 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 border-purple-300/60 dark:border-purple-600/40 hover:bg-purple-200/80 dark:hover:bg-purple-900/60"
+                      ? "bg-amber-500 dark:bg-amber-500 text-white border-amber-500"
+                      : "bg-amber-100/80 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border-amber-300/60 dark:border-amber-600/40 hover:bg-amber-200/80 dark:hover:bg-amber-900/60"
                   )}
                 >
                   {skill}
@@ -110,7 +110,7 @@ export default function SkillsSection({
       <div
         className={cn(
           "absolute inset-0 rounded-full blur-lg opacity-0 transition-opacity duration-500 pointer-events-none",
-          "bg-gradient-to-b from-purple-400 via-purple-500 to-purple-600 dark:from-purple-500 dark:via-purple-600 dark:to-purple-700",
+          "bg-gradient-to-b from-yellow-400 via-amber-500 to-amber-600 dark:from-amber-500 dark:via-amber-600 dark:to-yellow-700",
           isOpen && "opacity-30"
         )}
       />

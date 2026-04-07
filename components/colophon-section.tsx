@@ -47,7 +47,7 @@ export function ColophonSection() {
       >
         <div className="max-w-7xl mx-auto">
           <div ref={headerRef} className="mb-12 sm:mb-16 md:mb-20">
-            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-purple-500">
+            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-amber-500">
               {SECTION_LABEL}
             </span>
             <h2 className="mt-3 sm:mt-4 md:mt-6 font-[var(--font-bebas)] text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-neutral-950 dark:text-neutral-50 leading-tight">
@@ -57,7 +57,7 @@ export function ColophonSection() {
 
           <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 lg:gap-16">
             <div className="col-span-1">
-              <h4 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-purple-500 mb-3 sm:mb-4 md:mb-6">
+              <h4 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-amber-500 mb-3 sm:mb-4 md:mb-6">
                 Reach Out
               </h4>
               <ul className="space-y-2 sm:space-y-3">
@@ -67,8 +67,8 @@ export function ColophonSection() {
                     className={cn(
                       "font-mono text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 group",
                       isCopied
-                        ? "text-purple-600 dark:text-purple-400"
-                        : "text-neutral-700 dark:text-neutral-300 hover:text-purple-600 dark:hover:text-purple-400"
+                        ? "text-amber-600 dark:text-amber-400"
+                        : "text-neutral-700 dark:text-neutral-300 hover:text-amber-600 dark:hover:text-amber-400"
                     )}
                   >
                     <span>{EMAIL}</span>
@@ -101,12 +101,12 @@ export function ColophonSection() {
             </div>
 
             <div className="col-span-1">
-              <h4 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-purple-500 mb-3 sm:mb-4 md:mb-6">
+              <h4 className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-amber-500 mb-3 sm:mb-4 md:mb-6">
                 Status
               </h4>
               <ul className="space-y-2 sm:space-y-3">
                 <li className="font-mono text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">Open to</li>
-                <li className="font-mono text-xs sm:text-sm text-purple-600 dark:text-purple-400 font-medium">Opportunities</li>
+                <li className="font-mono text-xs sm:text-sm text-amber-600 dark:text-amber-400 font-medium">Opportunities</li>
               </ul>
             </div>
           </div>

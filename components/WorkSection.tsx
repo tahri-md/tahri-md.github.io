@@ -117,7 +117,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         "group relative flex flex-col justify-between p-4 md:p-5 lg:p-6 border transition-all duration-500 overflow-hidden cursor-pointer",
         project.span,
         isActive
-          ? "border-purple-500 dark:border-purple-500"
+          ? "border-amber-500 dark:border-amber-500"
           : "border-neutral-300 dark:border-neutral-700"
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -126,7 +126,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       <div
         className={cn(
           "absolute inset-0 transition-opacity duration-500",
-          "bg-purple-500/5 dark:bg-purple-500/10",
+          "bg-amber-500/5 dark:bg-amber-500/10",
           isActive ? "opacity-100" : "opacity-0"
         )}
       />
@@ -139,7 +139,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         <h3
           className={cn(
             "text-xl md:text-2xl lg:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-4 tracking-tight line-clamp-2",
-            isActive ? "text-purple-500" : "text-neutral-900 dark:text-neutral-100"
+            isActive ? "text-amber-500" : "text-neutral-900 dark:text-neutral-100"
           )}
         >
           {project.title}
@@ -165,7 +165,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded font-mono"
+              className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 rounded font-mono"
             >
               {t}
             </span>
@@ -179,8 +179,8 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           isActive ? "opacity-100" : "opacity-0"
         )}
       >
-        <div className="absolute top-0 right-0 w-full h-[1px] bg-purple-500" />
-        <div className="absolute top-0 right-0 w-[1px] h-full bg-purple-500" />
+        <div className="absolute top-0 right-0 w-full h-[1px] bg-amber-500" />
+        <div className="absolute top-0 right-0 w-[1px] h-full bg-amber-500" />
       </div>
     </a>
   )

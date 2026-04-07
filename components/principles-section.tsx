@@ -122,7 +122,7 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
 
   return (
     <article className={`flex flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-purple-500 mb-3 sm:mb-4 md:mb-6">
+      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-amber-500 mb-3 sm:mb-4 md:mb-6">
         {principle.number} / {firstWord}
       </span>
 
