@@ -3,13 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-geist-sans: system-ui, -apple-system, sans-serif;
+  --font-geist-mono: 'Courier New', monospace;
+  --font-bebas: 'Bebas Neue', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,36 +16,23 @@
 }
 
 html {
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  @apply overflow-x-hidden scroll-smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+  @apply min-h-full overflow-x-hidden bg-white dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50;
 }
 
 .grid-bg {
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-  opacity: 0.08;
-  background-image:
-    linear-gradient(to right, #0001 1px, transparent 1px),
+  @apply pointer-events-none fixed inset-0 -z-10 opacity-8;
+  background-image: linear-gradient(to right, #0001 1px, transparent 1px),
     linear-gradient(to bottom, #0001 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
 @media (prefers-color-scheme: dark) {
   .grid-bg {
-    background-image:
-      linear-gradient(to right, #fff1 1px, transparent 1px),
+    background-image: linear-gradient(to right, #fff1 1px, transparent 1px),
       linear-gradient(to bottom, #fff1 1px, transparent 1px);
   }
 }
