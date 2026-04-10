@@ -129,7 +129,7 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
       <h3 className="font-(--font-bebas) text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-tight text-caramel-900 dark:text-caramel-100">
         {principle.titleParts.map((part, i) =>
           part.highlight ? (
-            <HighlightText key={i} parallaxSpeed={0.6}>
+            <HighlightText key={i} parallaxSpeed={0.6} highlightColor="bg-gradient-to-r from-orange-400 via-pink-400 to-orange-400">
               {part.text}
             </HighlightText>
           ) : (

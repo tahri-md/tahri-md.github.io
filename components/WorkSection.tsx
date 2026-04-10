@@ -84,6 +84,24 @@ const PROJECTS: Project[] = [
     link: "https://github.com/tahri-md/ScriptFormer",
     span: "col-span-1",
   },
+  {
+    title: "Pinlio",
+    type: "Incoming",
+    description:
+      "Coming soon...",
+    tech: ["???"],
+    link: "#",
+    span: "col-span-1",
+  },
+  {
+    title: "Qirel",
+    type: "Incoming",
+    description:
+      "Coming soon...",
+    tech: ["???"],
+    link: "#",
+    span: "col-span-1",
+  },
 ]
 
 function SectionHeader() {
@@ -107,6 +125,7 @@ interface WorkCardProps {
 function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const isActive = alwaysActive || isHovered
+  const isIncoming = project.type === "Incoming"
 
   return (
     <a
@@ -116,7 +135,11 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       className={cn(
         "group relative flex flex-col justify-between p-4 md:p-5 lg:p-6 border transition-all duration-500 overflow-hidden cursor-pointer",
         project.span,
-        isActive
+        isIncoming
+          ? isActive || alwaysActive
+            ? "border-orange-500 dark:border-pink-400 shadow-lg shadow-orange-500/20 dark:shadow-pink-400/20"
+            : "border-orange-400/50 dark:border-pink-400/50"
+          : isActive
           ? "border-caramel-500 dark:border-caramel-500"
           : "border-caramel-300 dark:border-caramel-700"
       )}
@@ -126,20 +149,29 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       <div
         className={cn(
           "absolute inset-0 transition-opacity duration-500",
-          "bg-caramel-500/5 dark:bg-caramel-500/10",
+          isIncoming
+            ? "bg-gradient-to-br from-orange-500/10 to-pink-500/10 dark:from-orange-500/15 dark:to-pink-500/15"
+            : "bg-caramel-500/5 dark:bg-caramel-500/10",
           isActive ? "opacity-100" : "opacity-0"
         )}
       />
 
       <div className="relative z-10">
-        <span className="font-mono text-xs text-caramel-600 dark:text-caramel-400">
+        <span className={cn(
+          "font-mono text-xs",
+          isIncoming
+            ? "text-orange-600 dark:text-pink-400 font-semibold"
+            : "text-caramel-600 dark:text-caramel-400"
+        )}>
           {project.type}
         </span>
 
         <h3
           className={cn(
             "text-xl md:text-2xl lg:text-3xl font-(--font-bebas) transition-colors duration-300 mt-4 tracking-tight line-clamp-2",
-            isActive ? "text-caramel-500" : "text-caramel-900 dark:text-caramel-100"
+            isIncoming
+              ? isActive ? "text-orange-500 dark:text-pink-400" : "text-caramel-900 dark:text-caramel-100"
+              : isActive ? "text-caramel-500" : "text-caramel-900 dark:text-caramel-100"
           )}
         >
           {project.title}

@@ -10,9 +10,10 @@ interface HighlightTextProps {
   children: ReactNode
   className?: string
   parallaxSpeed?: number
+  highlightColor?: string
 }
 
-export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }: HighlightTextProps) {
+export function HighlightText({ children, className = "", parallaxSpeed = 0.3, highlightColor = "bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400" }: HighlightTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null)
   const highlightRef = useRef<HTMLSpanElement>(null)
   const textRef = useRef<HTMLSpanElement>(null)
@@ -60,7 +61,7 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
     <span ref={containerRef} className={`relative inline-block ${className}`}>
       <span
         ref={highlightRef}
-        className="absolute inset-0 z-0 rounded-[0.08em] bg-caramel-300/90"
+        className={`absolute inset-0 z-0 rounded-[0.08em] ${highlightColor}`}
         style={{
           left: "-0.1em",
           right: "-0.1em",
@@ -68,6 +69,7 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
           bottom: "-0.06em",
           transform: "scaleX(0)",
           transformOrigin: "left center",
+          opacity: 0.9,
         }}
       />
       <span ref={textRef} className="relative z-10">
