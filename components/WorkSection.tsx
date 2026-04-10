@@ -89,10 +89,10 @@ const PROJECTS: Project[] = [
 function SectionHeader() {
   return (
     <div className="flex flex-col gap-3 sm:gap-4">
-      <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-[var(--font-bebas)] text-neutral-950 dark:text-neutral-50 tracking-tight leading-tight">
+      <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-(--font-bebas) text-caramel-900 dark:text-caramel-100 tracking-tight leading-tight">
         {SECTION_TITLE}
       </h2>
-      <p className="font-mono text-xs sm:text-sm md:text-base text-neutral-600 dark:text-neutral-400 max-w-3xl leading-relaxed">
+      <p className="font-mono text-xs sm:text-sm md:text-base text-caramel-700 dark:text-caramel-300 max-w-3xl leading-relaxed">
         {SECTION_SUBTITLE}
       </p>
     </div>
@@ -117,8 +117,8 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         "group relative flex flex-col justify-between p-4 md:p-5 lg:p-6 border transition-all duration-500 overflow-hidden cursor-pointer",
         project.span,
         isActive
-          ? "border-amber-500 dark:border-amber-500"
-          : "border-neutral-300 dark:border-neutral-700"
+          ? "border-caramel-500 dark:border-caramel-500"
+          : "border-caramel-300 dark:border-caramel-700"
       )}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -126,20 +126,20 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       <div
         className={cn(
           "absolute inset-0 transition-opacity duration-500",
-          "bg-amber-500/5 dark:bg-amber-500/10",
+          "bg-caramel-500/5 dark:bg-caramel-500/10",
           isActive ? "opacity-100" : "opacity-0"
         )}
       />
 
       <div className="relative z-10">
-        <span className="font-mono text-xs text-neutral-500 dark:text-neutral-500">
+        <span className="font-mono text-xs text-caramel-600 dark:text-caramel-400">
           {project.type}
         </span>
 
         <h3
           className={cn(
-            "text-xl md:text-2xl lg:text-3xl font-[var(--font-bebas)] transition-colors duration-300 mt-4 tracking-tight line-clamp-2",
-            isActive ? "text-amber-500" : "text-neutral-900 dark:text-neutral-100"
+            "text-xl md:text-2xl lg:text-3xl font-(--font-bebas) transition-colors duration-300 mt-4 tracking-tight line-clamp-2",
+            isActive ? "text-caramel-500" : "text-caramel-900 dark:text-caramel-100"
           )}
         >
           {project.title}
@@ -149,7 +149,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
       <div className="relative z-10 space-y-2 md:space-y-3">
         <p
           className={cn(
-            "text-xs md:text-sm font-mono text-neutral-600 dark:text-neutral-400 transition-all duration-500 line-clamp-2",
+            "text-xs md:text-sm font-mono text-caramel-700 dark:text-caramel-300 transition-all duration-500 line-clamp-2",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           )}
         >
@@ -165,7 +165,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 bg-amber-500/10 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 rounded font-mono"
+              className="text-[10px] md:text-xs px-2 py-0.5 md:py-1 bg-caramel-500/10 dark:bg-caramel-500/20 text-caramel-700 dark:text-caramel-300 rounded font-mono"
             >
               {t}
             </span>
@@ -179,8 +179,8 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           isActive ? "opacity-100" : "opacity-0"
         )}
       >
-        <div className="absolute top-0 right-0 w-full h-[1px] bg-amber-500" />
-        <div className="absolute top-0 right-0 w-[1px] h-full bg-amber-500" />
+        <div className="absolute top-0 right-0 w-full h-px bg-caramel-500" />
+        <div className="absolute top-0 right-0 w-px h-full bg-caramel-500" />
       </div>
     </a>
   )
@@ -207,7 +207,7 @@ function ProjectGrid({ projects }: ProjectGridProps) {
         ))
       ) : (
         <div className="col-span-full flex items-center justify-center py-12">
-          <p className="font-mono text-sm text-neutral-500 dark:text-neutral-400">
+          <p className="font-mono text-sm text-caramel-600 dark:text-caramel-400">
             No projects found with selected skills.
           </p>
         </div>

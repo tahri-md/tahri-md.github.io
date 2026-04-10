@@ -1,36 +1,20 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { cn } from "@/utils/utils"
 
 interface ToastProps {
   message: string
   isVisible: boolean
-  duration?: number
 }
 
-export function Toast({ message, isVisible, duration = 2000 }: ToastProps) {
-  const [show, setShow] = useState(isVisible)
-
-  useEffect(() => {
-    setShow(isVisible)
-
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setShow(false)
-      }, duration)
-
-      return () => clearTimeout(timer)
-    }
-  }, [isVisible, duration])
-
+export function Toast({ message, isVisible }: ToastProps) {
   return (
     <div
       className={cn(
         "fixed bottom-6 right-6 z-50 px-4 py-3 rounded-lg font-mono text-sm transition-all duration-300 pointer-events-none",
-        "bg-black text-amber-500",
-        "border border-amber-500",
-        show
+        "bg-caramel-950 text-caramel-300",
+        "border border-caramel-500",
+        isVisible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-2"
       )}
@@ -39,7 +23,7 @@ export function Toast({ message, isVisible, duration = 2000 }: ToastProps) {
     >
       <div className="flex items-center gap-2">
         <svg
-          className="w-4 h-4 text-amber-500 flex-shrink-0"
+          className="w-4 h-4 text-caramel-400 shrink-0"
           fill="currentColor"
           viewBox="0 0 20 20"
         >

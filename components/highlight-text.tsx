@@ -36,10 +36,9 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
         { scaleX: 1, duration: 1.2, ease: "power3.out" }
       )
 
-      tl.fromTo(
+      tl.to(
         textRef.current,
-        { color: "rgb(250, 250, 250)" },
-        { color: "#f59e0b", duration: 0.6, ease: "power2.out" },
+        { color: "#1f130b", duration: 0.6, ease: "power2.out" },
         0.5
       )
 
@@ -61,12 +60,12 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
     <span ref={containerRef} className={`relative inline-block ${className}`}>
       <span
         ref={highlightRef}
-        className="absolute inset-0 bg-accent"
+        className="absolute inset-0 z-0 rounded-[0.08em] bg-caramel-300/90"
         style={{
           left: "-0.1em",
           right: "-0.1em",
-          top: "0.15em",
-          bottom: "0.1em",
+          top: "0.5em",
+          bottom: "-0.06em",
           transform: "scaleX(0)",
           transformOrigin: "left center",
         }}
