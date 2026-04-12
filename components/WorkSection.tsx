@@ -1,7 +1,8 @@
 "use client"
 
 import { cn } from "@/utils/utils"
-import { useMemo, useState } from "react"
+import { useMemo, useState, useEffect, useRef } from "react"
+import { animateFloatingOrbs } from "@/lib/animations"
 
 interface Project {
   title: string
@@ -137,8 +138,8 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         project.span,
         isIncoming
           ? isActive || alwaysActive
-            ? "border-orange-500 dark:border-pink-400 shadow-lg shadow-orange-500/20 dark:shadow-pink-400/20"
-            : "border-orange-400/50 dark:border-pink-400/50"
+            ? "border-orange-600 dark:border-orange-500 shadow-lg shadow-orange-600/20 dark:shadow-orange-500/20"
+            : "border-orange-500/50 dark:border-orange-400/50"
           : isActive
           ? "border-caramel-500 dark:border-caramel-500"
           : "border-caramel-300 dark:border-caramel-700"
@@ -150,7 +151,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         className={cn(
           "absolute inset-0 transition-opacity duration-500",
           isIncoming
-            ? "bg-gradient-to-br from-orange-500/10 to-pink-500/10 dark:from-orange-500/15 dark:to-pink-500/15"
+            ? "bg-linear-to-br from-orange-500/10 to-yellow-500/10 dark:from-orange-600/15 dark:to-yellow-500/15"
             : "bg-caramel-500/5 dark:bg-caramel-500/10",
           isActive ? "opacity-100" : "opacity-0"
         )}
@@ -160,7 +161,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
         <span className={cn(
           "font-mono text-xs",
           isIncoming
-            ? "text-orange-600 dark:text-pink-400 font-semibold"
+            ? "text-orange-700 dark:text-orange-400 font-semibold"
             : "text-caramel-600 dark:text-caramel-400"
         )}>
           {project.type}
@@ -170,7 +171,7 @@ function WorkCard({ project, alwaysActive = false }: WorkCardProps) {
           className={cn(
             "text-xl md:text-2xl lg:text-3xl font-(--font-bebas) transition-colors duration-300 mt-4 tracking-tight line-clamp-2",
             isIncoming
-              ? isActive ? "text-orange-500 dark:text-pink-400" : "text-caramel-900 dark:text-caramel-100"
+              ? isActive ? "text-orange-600 dark:text-orange-400" : "text-caramel-900 dark:text-caramel-100"
               : isActive ? "text-caramel-500" : "text-caramel-900 dark:text-caramel-100"
           )}
         >
@@ -249,6 +250,7 @@ function ProjectGrid({ projects }: ProjectGridProps) {
 }
 
 export default function WorkSection({ selectedSkills }: WorkSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null)
   const filteredProjects = useMemo(() => {
     if (selectedSkills.size === 0) {
       return PROJECTS
@@ -258,9 +260,36 @@ export default function WorkSection({ selectedSkills }: WorkSectionProps) {
     )
   }, [selectedSkills])
 
+  useEffect(() => {
+    if (sectionRef.current) {
+      animateFloatingOrbs(sectionRef.current)
+    }
+  }, [])
+
   return (
-    <section id={SECTION_ID} className="relative w-full py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28">
-      <div className="max-w-7xl mx-auto">
+    <section ref={sectionRef} id={SECTION_ID} className="relative w-full py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 overflow-hidden">
+      {/* Floating caramel orbs */}
+      {[
+        { size: 120, opacity: 0.08, top: "10%", left: "5%" },
+        { size: 80, opacity: 0.06, top: "60%", left: "90%" },
+        { size: 100, opacity: 0.09, top: "70%", left: "8%" },
+        { size: 90, opacity: 0.07, top: "20%", left: "85%" },
+      ].map((orb, i) => (
+        <div
+          key={i}
+          data-float-orb
+          className="absolute rounded-full blur-3xl pointer-events-none"
+          style={{
+            width: `${orb.size}px`,
+            height: `${orb.size}px`,
+            top: orb.top,
+            left: orb.left,
+            background: `radial-gradient(circle, rgba(251, 146, 60, ${orb.opacity}) 0%, transparent 70%)`,
+          }}
+        />
+      ))}
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <SectionHeader />
         <div className="mt-12 sm:mt-14 md:mt-16 lg:mt-20">
           <ProjectGrid projects={filteredProjects} />

@@ -32,8 +32,8 @@ export default function HeroSection() {
               href={button.href}
               className={`font-mono text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-3 transition-all duration-300 w-full sm:w-auto text-center sm:text-left ${
                 button.variant === "primary"
-                  ? "border-2 border-caramel-500 text-caramel-600 dark:text-caramel-300 hover:bg-caramel-500/10 dark:hover:bg-caramel-500/20"
-                  : "text-caramel-700 dark:text-caramel-300 hover:text-caramel-600 dark:hover:text-caramel-200"
+                  ? "border-2 border-orange-600 dark:border-orange-500 text-orange-700 dark:text-orange-400 hover:bg-orange-600/10 dark:hover:bg-orange-500/20"
+                  : "text-caramel-700 dark:text-caramel-300 hover:text-orange-600 dark:hover:text-orange-400"
               }`}
             >
               {button.label}

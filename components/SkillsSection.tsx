@@ -110,7 +110,7 @@ export default function SkillsSection({
       <div
         className={cn(
           "absolute inset-0 rounded-full blur-lg opacity-0 transition-opacity duration-500 pointer-events-none",
-          "bg-linear-to-b from-caramel-300 via-caramel-500 to-caramel-700 dark:from-caramel-400 dark:via-caramel-600 dark:to-caramel-800",
+          "bg-linear-to-b from-orange-400 via-orange-500 to-orange-700 dark:from-orange-500 dark:via-orange-600 dark:to-orange-800",
           isOpen && "opacity-30"
         )}
       />

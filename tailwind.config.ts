@@ -10,7 +10,7 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        accent: '#c9803b',
+        accent: '#f97316',
         primary: '#3f2213',
         secondary: '#61361c',
         caramel: {

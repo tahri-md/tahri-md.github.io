@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react"
 import { HighlightText } from "@/components/highlight-text"
-import { animateInFromLeft } from "@/lib/animations"
+import { animateInFromLeft, animateFloatingOrbs } from "@/lib/animations"
 import { cn } from "@/utils/utils"
 import gsap from "gsap"
 
@@ -129,7 +129,7 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
       <h3 className="font-(--font-bebas) text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-tight text-caramel-900 dark:text-caramel-100">
         {principle.titleParts.map((part, i) =>
           part.highlight ? (
-            <HighlightText key={i} parallaxSpeed={0.6} highlightColor="bg-gradient-to-r from-orange-400 via-pink-400 to-orange-400">
+            <HighlightText key={i} parallaxSpeed={0.6} highlightColor="bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500">
               {part.text}
             </HighlightText>
           ) : (
@@ -154,13 +154,40 @@ export function PrinciplesSection() {
 
   useAnimatePrinciples(sectionRef, headerRef, principlesRef)
 
+  useEffect(() => {
+    if (sectionRef.current) {
+      animateFloatingOrbs(sectionRef.current)
+    }
+  }, [])
+
   return (
     <section
       ref={sectionRef}
       id={SECTION_ID}
-      className="relative py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28"
+      className="relative py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto pl-0 md:pl-8 lg:pl-12">
+      {/* Floating caramel orbs */}
+      {[
+        { size: 140, opacity: 0.08, top: "15%", left: "8%" },
+        { size: 100, opacity: 0.06, top: "50%", left: "90%" },
+        { size: 120, opacity: 0.09, top: "75%", left: "10%" },
+        { size: 95, opacity: 0.07, top: "25%", left: "80%" },
+      ].map((orb, i) => (
+        <div
+          key={i}
+          data-float-orb
+          className="absolute rounded-full blur-3xl pointer-events-none"
+          style={{
+            width: `${orb.size}px`,
+            height: `${orb.size}px`,
+            top: orb.top,
+            left: orb.left,
+            background: `radial-gradient(circle, rgba(251, 146, 60, ${orb.opacity}) 0%, transparent 70%)`,
+          }}
+        />
+      ))}
+
+      <div className="max-w-7xl mx-auto pl-0 md:pl-8 lg:pl-12 relative z-10">
         <SectionHeader ref={headerRef} title={SECTION_TITLE} />
 
         <div ref={principlesRef} className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-28 xl:space-y-32">

@@ -65,3 +65,26 @@ export const parallaxY = (element: HTMLElement | null, speed = 0.3) => {
     },
   })
 }
+
+export const animateFloatingOrbs = (container: HTMLElement | null) => {
+  if (!container) return
+
+  const orbs = container.querySelectorAll("[data-float-orb]")
+  
+  orbs.forEach((orb, index) => {
+    const duration = 4 + Math.random() * 2
+    const delay = index * 0.3
+    const moveX = (Math.random() - 0.5) * 40
+    const moveY = (Math.random() - 0.5) * 60
+    
+    gsap.to(orb, {
+      x: moveX,
+      y: moveY,
+      duration: duration,
+      delay: delay,
+      ease: "sine.inOut",
+      repeat: -1,
+      yoyo: true,
+    })
+  })
+}

@@ -21,57 +21,20 @@ html {
 }
 
 body {
-  @apply min-h-full overflow-x-hidden bg-black dark:bg-black text-caramel-900 dark:text-caramel-100;
+  @apply min-h-full overflow-x-hidden bg-black text-caramel-900 dark:text-caramel-100;
   position: relative;
   isolation: isolate;
 }
 
-.caramel-flow {
-  position: fixed;
-  inset: -20%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.4;
-  filter: blur(28px) saturate(120%);
-  background:
-    radial-gradient(45% 40% at 15% 20%, rgb(201 128 59 / 0.24), transparent 70%),
-    radial-gradient(42% 36% at 82% 24%, rgb(222 155 88 / 0.2), transparent 72%),
-    radial-gradient(50% 42% at 50% 82%, rgb(170 101 46 / 0.2), transparent 74%);
-  animation: caramel-drift 22s ease-in-out infinite alternate;
-}
-
-.caramel-flow::before,
-.caramel-flow::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-repeat: no-repeat;
-  mix-blend-mode: screen;
-}
-
-.caramel-flow::before {
-  background-image:
-    radial-gradient(38% 30% at 28% 68%, rgb(132 75 36 / 0.3), transparent 72%),
-    radial-gradient(34% 32% at 72% 66%, rgb(201 128 59 / 0.24), transparent 70%);
-  animation: caramel-swell 28s ease-in-out infinite;
-}
-
-.caramel-flow::after {
-  background-image:
-    radial-gradient(30% 28% at 52% 30%, rgb(238 184 125 / 0.2), transparent 68%),
-    radial-gradient(26% 24% at 12% 78%, rgb(222 155 88 / 0.18), transparent 70%);
-  animation: caramel-glide 18s ease-in-out infinite alternate;
-}
-
 @keyframes caramel-drift {
   0% {
-    transform: translate3d(-2%, -1.5%, 0) scale(1);
+    transform: translate3d(-3%, -2%, 0) scale(0.95);
   }
   50% {
-    transform: translate3d(1.2%, 1.6%, 0) scale(1.05);
+    transform: translate3d(1%, 1.5%, 0) scale(1.02);
   }
   100% {
-    transform: translate3d(2.2%, -1.2%, 0) scale(1.08);
+    transform: translate3d(3%, -2.5%, 0) scale(1);
   }
 }
 
@@ -79,22 +42,22 @@ body {
   0%,
   100% {
     transform: scale(1) rotate(0deg);
-    opacity: 0.75;
+    opacity: 0.5;
   }
   50% {
-    transform: scale(1.1) rotate(5deg);
-    opacity: 1;
+    transform: scale(1.08) rotate(3deg);
+    opacity: 0.7;
   }
 }
 
 @keyframes caramel-glide {
   0% {
-    transform: translate3d(-1.2%, 1.4%, 0);
-    opacity: 0.7;
+    transform: translate3d(-2%, 1.8%, 0);
+    opacity: 0.4;
   }
   100% {
-    transform: translate3d(1.8%, -1.6%, 0);
-    opacity: 1;
+    transform: translate3d(2%, -1.8%, 0);
+    opacity: 0.6;
   }
 }
 

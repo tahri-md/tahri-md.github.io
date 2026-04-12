@@ -13,7 +13,7 @@ interface HighlightTextProps {
   highlightColor?: string
 }
 
-export function HighlightText({ children, className = "", parallaxSpeed = 0.3, highlightColor = "bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400" }: HighlightTextProps) {
+export function HighlightText({ children, className = "", parallaxSpeed = 0.3, highlightColor = "bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500" }: HighlightTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null)
   const highlightRef = useRef<HTMLSpanElement>(null)
   const textRef = useRef<HTMLSpanElement>(null)
