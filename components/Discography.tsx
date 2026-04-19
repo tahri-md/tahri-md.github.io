@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/utils/utils";
-import { Play } from "lucide-react";
+import { Play, ArrowRight, X, ExternalLink } from "lucide-react";
 
 interface Project {
     title: string
@@ -72,11 +72,19 @@ const SINGLE_PROJECTS: Project[] = [
     },
       {
         title: "Qirel",
-        type: "Incoming",
+        type: "GraphQL / Microservices",
         description:
-            "Coming soon...",
-        tech: ["???"],
-        link: "#",
+            "Production-ready GraphQL API Gateway with Apollo Server federation, intelligent routing, JWT authentication, Prometheus monitoring, and resilient microservice communication.",
+        tech: ["Node.js", "Apollo Server", "GraphQL", "Express", "JWT", "Prometheus", "TypeScript"],
+        link: "https://github.com/tahri-md/qirel",
+    },
+    {
+        title: "Dexoria",
+        type: "Game / TUI",
+        description:
+            "Turn-based Pokemon battle game with TUI interface. Battle against a bot, select your team from real Pokemon, and compete in dynamic terminal-based combat with multiplayer WebSocket support.",
+        tech: ["TypeScript", "Node.js", "WebSocket"],
+        link: "https://github.com/tahri-md/dexoria",
     },
 ]
 const FEATURED_PROJECTS: Project[] = [
@@ -200,8 +208,94 @@ function TabButton({ active, onClick, children }: TabButtonProps) {
     )
 }
 
+function AllProjectsPanel({ projects, isOpen, onClose, type }: { projects: Project[]; isOpen: boolean; onClose: () => void; type: string }) {
+    if (!isOpen) return null
+
+    return (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+            <div className="bg-gradient-to-b from-caramel-900/20 to-black border border-caramel-800 rounded w-full max-w-6xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+                {/* Header */}
+                <div className="flex items-center justify-between p-8 border-b border-caramel-800">
+                    <h3 className="text-3xl font-bold text-caramel-100">{type}</h3>
+                    <button
+                        onClick={onClose}
+                        className="text-caramel-400 hover:text-caramel-300 transition-colors"
+                    >
+                        <X className="w-6 h-6" />
+                    </button>
+                </div>
+
+                <div className="overflow-y-auto flex-1 p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {projects.map((project) => (
+                            <a
+                                key={project.title}
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group"
+                            >
+                                <div className="relative overflow-hidden rounded transition-all duration-300 bg-linear-to-br from-black to-black/80 border border-caramel-800 hover:border-caramel-500 hover:shadow-lg h-full flex flex-col">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    
+                                    <div className="absolute top-4 right-4 z-10">
+                                        <div className="w-8 h-8 rounded bg-caramel-600 group-hover:bg-caramel-500 transition-all duration-300 flex items-center justify-center shadow-lg transform group-hover:scale-110">
+                                            <Play className="w-6 h-6 text-black fill-black" />
+                                        </div>
+                                    </div>
+
+                                    <div className="p-6 flex flex-col justify-between h-full relative z-0">
+                                        <div className="space-y-3">
+                                            <h4 className="text-lg font-bold text-caramel-100 group-hover:text-caramel-300 transition-colors line-clamp-2">
+                                                {project.title}
+                                            </h4>
+                                            <p className="text-xs text-caramel-500 font-semibold uppercase tracking-wide">
+                                                {project.type}
+                                            </p>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            <p className="text-sm text-caramel-300 line-clamp-3">
+                                                {project.description}
+                                            </p>
+
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {project.tech.slice(0, 4).map((t) => (
+                                                    <span
+                                                        key={t}
+                                                        className="text-xs px-2.5 py-1 bg-caramel-600/20 text-caramel-300 rounded-full border border-caramel-600/40 group-hover:bg-caramel-600/30 group-hover:text-caramel-200 transition-colors"
+                                                    >
+                                                        {t}
+                                                    </span>
+                                                ))}
+                                                {project.tech.length > 4 && (
+                                                    <span className="text-xs px-2.5 py-1 bg-caramel-600/20 text-caramel-400 rounded-full border border-caramel-600/40 group-hover:bg-caramel-600/30 transition-colors">
+                                                        +{project.tech.length - 4}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={cn(
+                                        "absolute top-0 left-0 right-0 h-0.5 bg-caramel-500 transition-all duration-300",
+                                        "opacity-0 group-hover:opacity-100"
+                                    )} />
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export default function NewDiscography() {
     const [activeTab, setActiveTab] = useState<'singles' | 'featured'>('singles')
+    const [showAll, setShowAll] = useState(false)
+    const displayProjects = activeTab === 'singles' ? SINGLE_PROJECTS.slice(0, 4) : FEATURED_PROJECTS.slice(0, 4)
+    const allProjects = activeTab === 'singles' ? SINGLE_PROJECTS : FEATURED_PROJECTS
 
     return (
         <div className="relative flex flex-col w-full px-4 sm:px-6 lg:px-8 py-12 bg-linear-to-br from-black via-black to-black">
@@ -210,23 +304,43 @@ export default function NewDiscography() {
                     Discography
                 </h2>
 
-                <div className="flex gap-8 border-b border-caramel-700 mb-8">
-                    <TabButton 
-                        active={activeTab === 'singles'} 
-                        onClick={() => setActiveTab('singles')}
-                    >
-                        Singles
-                    </TabButton>
-                    <TabButton 
-                        active={activeTab === 'featured'} 
-                        onClick={() => setActiveTab('featured')}
-                    >
-                        Featured
-                    </TabButton>
+                <div className="flex gap-8 border-b border-caramel-700 mb-8 items-center justify-between">
+                    <div className="flex gap-8">
+                        <TabButton 
+                            active={activeTab === 'singles'} 
+                            onClick={() => setActiveTab('singles')}
+                        >
+                            Singles
+                        </TabButton>
+                        <TabButton 
+                            active={activeTab === 'featured'} 
+                            onClick={() => setActiveTab('featured')}
+                        >
+                            Featured
+                        </TabButton>
+                    </div>
+                    {(activeTab === 'singles' ? SINGLE_PROJECTS.length : FEATURED_PROJECTS.length) > 4 && (
+                        <button 
+                            onClick={() => setShowAll(true)}
+                            className={cn(
+                                "pb-3 px-1 font-medium transition-all border-b-2 flex items-center gap-2",
+                                "text-caramel-400 border-transparent hover:text-caramel-300"
+                            )}
+                        >
+                            Show All
+                            <ArrowRight className="w-4 h-4" />
+                        </button>
+                    )}
                 </div>
 
-                {activeTab === 'singles' && <ProjectsGrid projects={SINGLE_PROJECTS} />}
-                {activeTab === 'featured' && <ProjectsGrid projects={FEATURED_PROJECTS} />}
+                <ProjectsGrid projects={displayProjects} />
+                
+                <AllProjectsPanel 
+                    projects={allProjects}
+                    isOpen={showAll}
+                    onClose={() => setShowAll(false)}
+                    type={activeTab === 'singles' ? 'All Singles' : 'All Featured'}
+                />
             </div>
         </div>
     )
