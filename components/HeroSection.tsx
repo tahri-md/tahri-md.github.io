@@ -92,7 +92,7 @@ export default function NewHeroSection() {
                         <div className="absolute inset-0 bg-linear-to-br from-black to-red-900/40" />
                         
                         <img
-                            src="cover.png"
+                            src="cover.png?v=2"
                             alt="Hero Disk"
                             className="w-full h-full object-cover"
                         />
