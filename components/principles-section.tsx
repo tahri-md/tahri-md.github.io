@@ -105,7 +105,7 @@ interface SectionHeaderProps {
 function SectionHeader({ ref, title }: SectionHeaderProps) {
   return (
     <div ref={ref} className="mb-16 sm:mb-20 md:mb-24">
-      <h2 className="font-(--font-bebas) text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-caramel-900 dark:text-caramel-100 leading-tight">
+      <h2 className="font-(--font-bebas) text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-red-900 dark:text-red-100 leading-tight">
         {title}
       </h2>
     </div>
@@ -122,11 +122,11 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
 
   return (
     <article className={`flex flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-caramel-500 mb-3 sm:mb-4 md:mb-6">
+      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-red-500 mb-3 sm:mb-4 md:mb-6">
         {principle.number} / {firstWord}
       </span>
 
-      <h3 className="font-(--font-bebas) text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-tight text-caramel-900 dark:text-caramel-100">
+      <h3 className="font-(--font-bebas) text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-tight text-red-900 dark:text-red-100">
         {principle.titleParts.map((part, i) =>
           part.highlight ? (
             <HighlightText key={i} parallaxSpeed={0.6} highlightColor="bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500">
@@ -138,11 +138,11 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
         )}
       </h3>
 
-      <p className="mt-4 sm:mt-6 md:mt-8 max-w-lg font-mono text-xs sm:text-sm md:text-base text-caramel-700 dark:text-caramel-300 leading-relaxed">
+      <p className="mt-4 sm:mt-6 md:mt-8 max-w-lg font-mono text-xs sm:text-sm md:text-base text-red-700 dark:text-red-300 leading-relaxed">
         {principle.description}
       </p>
 
-      <div className={cn("mt-6 sm:mt-8 md:mt-10 h-px bg-caramel-300 dark:bg-caramel-700 w-16 sm:w-20 md:w-24 lg:w-48", isRight ? "mr-0" : "ml-0")} />
+      <div className={cn("mt-6 sm:mt-8 md:mt-10 h-px bg-red-300 dark:bg-red-700 w-16 sm:w-20 md:w-24 lg:w-48", isRight ? "mr-0" : "ml-0")} />
     </article>
   )
 }
@@ -166,7 +166,7 @@ export function PrinciplesSection() {
       id={SECTION_ID}
       className="relative py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 overflow-hidden"
     >
-      {/* Floating caramel orbs */}
+      {/* Floating red orbs */}
       {[
         { size: 140, opacity: 0.08, top: "15%", left: "8%" },
         { size: 100, opacity: 0.06, top: "50%", left: "90%" },

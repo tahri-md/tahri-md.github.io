@@ -119,8 +119,8 @@ function ProjectCard({ project }: { project: Project }) {
             <div
                 className={cn(
                     "relative overflow-hidden transition-all duration-300",
-                    "bg-linear-to-br from-black to-black/80 border border-caramel-800",
-                    "hover:border-caramel-500 hover:shadow-xl"
+                    "bg-linear-to-br from-black to-black/80 border border-red-800",
+                    "hover:border-red-500 hover:shadow-xl"
                 )}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -129,16 +129,16 @@ function ProjectCard({ project }: { project: Project }) {
                     <div className="space-y-2">
                         <div className="flex items-start justify-between gap-2">
                             <div className="flex-1">
-                                <h3 className="text-base font-bold text-caramel-100 line-clamp-2">
+                                <h3 className="text-base font-bold text-red-100 line-clamp-2">
                                     {project.title}
                                 </h3>
-                                <p className="text-xs text-caramel-500 mt-1">
+                                <p className="text-xs text-red-500 mt-1">
                                     {project.type}
                                 </p>
                             </div>
                             <Play className={cn(
                                 "w-5 h-5 transition-all duration-300 shrink-0",
-                                isHovered ? "text-caramel-400 translate-x-0" : "text-caramel-700 translate-x-1"
+                                isHovered ? "text-red-400 translate-x-0" : "text-red-700 translate-x-1"
                             )} />
                         </div>
                     </div>
@@ -147,13 +147,13 @@ function ProjectCard({ project }: { project: Project }) {
                         {project.tech.slice(0, 3).map((t) => (
                             <span 
                                 key={t} 
-                                className="text-xs px-2 py-1 bg-caramel-600/15 text-caramel-400 rounded border border-caramel-600/30 transition-colors"
+                                className="text-xs px-2 py-1 bg-red-600/15 text-red-400 rounded border border-red-600/30 transition-colors"
                             >
                                 {t}
                             </span>
                         ))}
                         {project.tech.length > 3 && (
-                            <span className="text-xs px-2 py-1 bg-caramel-600/15 text-caramel-500 rounded border border-caramel-600/30">
+                            <span className="text-xs px-2 py-1 bg-red-600/15 text-red-500 rounded border border-red-600/30">
                                 +{project.tech.length - 3}
                             </span>
                         )}
@@ -161,14 +161,14 @@ function ProjectCard({ project }: { project: Project }) {
 
                     <div className={cn(
                         "text-xs leading-relaxed transition-all duration-300",
-                        isHovered ? "text-caramel-200 opacity-100" : "text-caramel-400 opacity-60"
+                        isHovered ? "text-red-200 opacity-100" : "text-red-400 opacity-60"
                     )}>
                         {project.description}
                     </div>
                 </div>
 
                 <div className={cn(
-                    "absolute top-0 left-0 right-0 h-0.5 bg-caramel-500 transition-all duration-300",
+                    "absolute top-0 left-0 right-0 h-0.5 bg-red-500 transition-all duration-300",
                     isHovered ? "opacity-100" : "opacity-0"
                 )} />
             </div>
@@ -199,8 +199,8 @@ function TabButton({ active, onClick, children }: TabButtonProps) {
             className={cn(
                 "pb-3 px-1 font-medium transition-all border-b-2",
                 active
-                    ? "text-caramel-100 border-caramel-400"
-                    : "text-caramel-400 border-transparent hover:text-caramel-300"
+                    ? "text-red-100 border-red-400"
+                    : "text-red-400 border-transparent hover:text-red-300"
             )}
         >
             {children}
@@ -213,20 +213,20 @@ function AllProjectsPanel({ projects, isOpen, onClose, type }: { projects: Proje
 
     return (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-gradient-to-b from-caramel-900/20 to-black border border-caramel-800 rounded w-full max-w-6xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-linear-to-b from-red-900/20 to-black border border-red-800 rounded w-full max-w-6xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
                 {/* Header */}
-                <div className="flex items-center justify-between p-8 border-b border-caramel-800">
-                    <h3 className="text-3xl font-bold text-caramel-100">{type}</h3>
+                <div className="flex items-center justify-between p-8 border-b border-red-800">
+                    <h3 className="text-3xl font-bold text-red-100">{type}</h3>
                     <button
                         onClick={onClose}
-                        className="text-caramel-400 hover:text-caramel-300 transition-colors"
+                        className="text-red-400 hover:text-red-300 transition-colors"
                     >
                         <X className="w-6 h-6" />
                     </button>
                 </div>
 
                 <div className="overflow-y-auto flex-1 p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="flex flex-col gap-6">
                         {projects.map((project) => (
                             <a
                                 key={project.title}
@@ -235,27 +235,27 @@ function AllProjectsPanel({ projects, isOpen, onClose, type }: { projects: Proje
                                 rel="noopener noreferrer"
                                 className="group"
                             >
-                                <div className="relative overflow-hidden rounded transition-all duration-300 bg-linear-to-br from-black to-black/80 border border-caramel-800 hover:border-caramel-500 hover:shadow-lg h-full flex flex-col">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="relative overflow-hidden rounded transition-all duration-300 bg-linear-to-br from-black to-black/80 border border-red-800 hover:border-red-500 hover:shadow-lg h-full flex flex-col">
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     
                                     <div className="absolute top-4 right-4 z-10">
-                                        <div className="w-8 h-8 rounded bg-caramel-600 group-hover:bg-caramel-500 transition-all duration-300 flex items-center justify-center shadow-lg transform group-hover:scale-110">
+                                        <div className="w-12 h-12 rounded-full bg-red-600 group-hover:bg-red-500 transition-all duration-300 flex items-center justify-center shadow-lg transform group-hover:scale-110">
                                             <Play className="w-6 h-6 text-black fill-black" />
                                         </div>
                                     </div>
 
                                     <div className="p-6 flex flex-col justify-between h-full relative z-0">
                                         <div className="space-y-3">
-                                            <h4 className="text-lg font-bold text-caramel-100 group-hover:text-caramel-300 transition-colors line-clamp-2">
+                                            <h4 className="text-2xl font-bold text-red-100 group-hover:text-red-300 transition-colors line-clamp-2">
                                                 {project.title}
                                             </h4>
-                                            <p className="text-xs text-caramel-500 font-semibold uppercase tracking-wide">
+                                            <p className="text-xs text-red-500 font-semibold uppercase tracking-wide">
                                                 {project.type}
                                             </p>
                                         </div>
 
                                         <div className="space-y-3">
-                                            <p className="text-sm text-caramel-300 line-clamp-3">
+                                            <p className="text-sm text-red-300 line-clamp-3">
                                                 {project.description}
                                             </p>
 
@@ -263,13 +263,13 @@ function AllProjectsPanel({ projects, isOpen, onClose, type }: { projects: Proje
                                                 {project.tech.slice(0, 4).map((t) => (
                                                     <span
                                                         key={t}
-                                                        className="text-xs px-2.5 py-1 bg-caramel-600/20 text-caramel-300 rounded-full border border-caramel-600/40 group-hover:bg-caramel-600/30 group-hover:text-caramel-200 transition-colors"
+                                                        className="text-xs px-2.5 py-1 bg-red-600/20 text-red-300 rounded-full border border-red-600/40 group-hover:bg-red-600/30 group-hover:text-red-200 transition-colors"
                                                     >
                                                         {t}
                                                     </span>
                                                 ))}
                                                 {project.tech.length > 4 && (
-                                                    <span className="text-xs px-2.5 py-1 bg-caramel-600/20 text-caramel-400 rounded-full border border-caramel-600/40 group-hover:bg-caramel-600/30 transition-colors">
+                                                    <span className="text-xs px-2.5 py-1 bg-red-600/20 text-red-400 rounded-full border border-red-600/40 group-hover:bg-red-600/30 transition-colors">
                                                         +{project.tech.length - 4}
                                                     </span>
                                                 )}
@@ -278,7 +278,7 @@ function AllProjectsPanel({ projects, isOpen, onClose, type }: { projects: Proje
                                     </div>
 
                                     <div className={cn(
-                                        "absolute top-0 left-0 right-0 h-0.5 bg-caramel-500 transition-all duration-300",
+                                        "absolute top-0 left-0 right-0 h-0.5 bg-red-500 transition-all duration-300",
                                         "opacity-0 group-hover:opacity-100"
                                     )} />
                                 </div>
@@ -300,11 +300,11 @@ export default function NewDiscography() {
     return (
         <div className="relative flex flex-col w-full px-4 sm:px-6 lg:px-8 py-12 bg-linear-to-br from-black via-black to-black">
             <div className="max-w-7xl w-full">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-caramel-100 mb-8">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-red-100 mb-8">
                     Discography
                 </h2>
 
-                <div className="flex gap-8 border-b border-caramel-700 mb-8 items-center justify-between">
+                <div className="flex gap-8 border-b border-red-700 mb-8 items-center justify-between">
                     <div className="flex gap-8">
                         <TabButton 
                             active={activeTab === 'singles'} 
@@ -324,7 +324,7 @@ export default function NewDiscography() {
                             onClick={() => setShowAll(true)}
                             className={cn(
                                 "pb-3 px-1 font-medium transition-all border-b-2 flex items-center gap-2",
-                                "text-caramel-400 border-transparent hover:text-caramel-300"
+                                "text-red-400 border-transparent hover:text-red-300"
                             )}
                         >
                             Show All

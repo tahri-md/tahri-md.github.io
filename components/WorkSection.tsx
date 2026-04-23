@@ -99,29 +99,29 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
             <div
                 className={cn(
                     "flex items-center gap-4 px-4 py-3 transition-all duration-200",
-                    "border-b border-caramel-800/50 hover:border-caramel-600/50",
-                    "hover:bg-caramel-500/10"
+                    "border-b border-red-800/50 hover:border-red-600/50",
+                    "hover:bg-red-500/10"
                 )}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
                 <div className="w-8 flex justify-center shrink-0">
                     {isHovered ? (
-                        <button className="text-caramel-400 hover:text-caramel-300">
+                        <button className="text-red-400 hover:text-red-300">
                             <Play className="w-5 h-5 fill-current" />
                         </button>
                     ) : (
-                        <span className="text-sm text-caramel-400 font-mono">
+                        <span className="text-sm text-red-400 font-mono">
                             {String(index + 1).padStart(2, "0")}
                         </span>
                     )}
                 </div>
 
                 <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-caramel-100 truncate group-hover:text-caramel-300 transition-colors">
+                    <h3 className="text-sm font-medium text-red-100 truncate group-hover:text-red-300 transition-colors">
                         {project.title}
                     </h3>
-                    <p className="text-xs text-caramel-400 truncate">
+                    <p className="text-xs text-red-400 truncate">
                         {project.type}
                     </p>
                 </div>
@@ -130,7 +130,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                     {project.tech.slice(0, 2).map((tech) => (
                         <span
                             key={tech}
-                            className="text-[10px] px-2 py-0.5 bg-black border border-caramel-800 text-caramel-400 font-mono whitespace-nowrap"
+                            className="text-[10px] px-2 py-0.5 bg-black border border-red-800 text-red-400 font-mono whitespace-nowrap"
                         >
                             {tech}
                         </span>
@@ -147,7 +147,7 @@ export default function WorkSection() {
     return (
         <div id="work-section" className="relative flex flex-col w-full px-4 sm:px-6 lg:px-8 py-12 bg-linear-to-br from-black via-black to-black">
             <div className="max-w-4xl w-full">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-caramel-100 mb-8">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-red-100 mb-8">
                     Featured Work
                 </h2>
 
