@@ -239,8 +239,8 @@ function AllProjectsPanel({ projects, isOpen, onClose, type }: { projects: Proje
                                     <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     
                                     <div className="absolute top-4 right-4 z-10">
-                                        <div className="w-12 h-12 rounded-full bg-red-600 group-hover:bg-red-500 transition-all duration-300 flex items-center justify-center shadow-lg transform group-hover:scale-110">
-                                            <Play className="w-6 h-6 text-black fill-black" />
+                                        <div className="w-12 h-12 ">
+                                            <Play className="w-6 h-6 text-white/80 fill-black" />
                                         </div>
                                     </div>
 

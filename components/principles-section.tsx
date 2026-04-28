@@ -166,12 +166,12 @@ export function PrinciplesSection() {
       id={SECTION_ID}
       className="relative py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-28 overflow-hidden"
     >
-      {/* Floating red orbs */}
+      {/* Floating orange orbs */}
       {[
-        { size: 140, opacity: 0.08, top: "15%", left: "8%" },
-        { size: 100, opacity: 0.06, top: "50%", left: "90%" },
-        { size: 120, opacity: 0.09, top: "75%", left: "10%" },
-        { size: 95, opacity: 0.07, top: "25%", left: "80%" },
+        { size: 140, opacity: 0.018, top: "15%", left: "8%" },
+        { size: 100, opacity: 0.012, top: "50%", left: "90%" },
+        { size: 120, opacity: 0.022, top: "75%", left: "10%" },
+        { size: 95, opacity: 0.016, top: "25%", left: "80%" },
       ].map((orb, i) => (
         <div
           key={i}

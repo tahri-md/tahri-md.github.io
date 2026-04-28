@@ -21,9 +21,45 @@ html {
 }
 
 body {
-  @apply min-h-full overflow-x-hidden bg-black text-red-900 dark:text-red-100;
+  @apply min-h-full overflow-x-hidden bg-black text-neutral-100;
   position: relative;
   isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.16) 58%, rgba(0, 0, 0, 0.58) 100%),
+    repeating-linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.03) 0,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.45));
+  opacity: 0.8;
 }
 
 @keyframes red-drift {
@@ -71,14 +107,7 @@ body {
 
 .grid-bg {
   @apply pointer-events-none fixed inset-0 -z-10 opacity-8;
-  background-image: linear-gradient(to right, #dc26261a 1px, transparent 1px),
-    linear-gradient(to bottom, #dc26261a 1px, transparent 1px);
+  background-image: linear-gradient(to right, #ffffff12 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
   background-size: 50px 50px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .grid-bg {
-    background-image: linear-gradient(to right, #fecaca1f 1px, transparent 1px),
-      linear-gradient(to bottom, #fecaca1f 1px, transparent 1px);
-  }
 }
