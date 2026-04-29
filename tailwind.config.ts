@@ -21,17 +21,17 @@ export default {
         warning: '#B08968',
         error: '#A44A3F',
         brand: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
-          950: '#2e1065',
+          50: '#f0f2f3',  // misty glass
+          100: '#d8dfe3',  // overcast sky
+          200: '#b8c5cc',  // fog layer
+          300: '#8fa4af',  // wet concrete
+          400: '#647f8c',  // rain-soaked steel
+          500: '#47606e',  // platform shadow
+          600: '#344d58',  // deep track
+          700: '#253c46',  // tunnel dark
+          800: '#182d36',  // night rail
+          900: '#0f1f27',  // storm depth
+          950: '#071319',  // black carriage
         },
       },
       fontFamily: {
