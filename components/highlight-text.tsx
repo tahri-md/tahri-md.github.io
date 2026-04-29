@@ -13,7 +13,7 @@ interface HighlightTextProps {
   highlightColor?: string
 }
 
-export function HighlightText({ children, className = "", parallaxSpeed = 0.3, highlightColor = "bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500" }: HighlightTextProps) {
+export function HighlightText({ children, className = "", parallaxSpeed = 0.3, highlightColor = "bg-gradient-to-r from-accent-dark via-accent-main to-accent-hover" }: HighlightTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null)
   const highlightRef = useRef<HTMLSpanElement>(null)
   const textRef = useRef<HTMLSpanElement>(null)
@@ -61,7 +61,7 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3, h
     <span ref={containerRef} className={`relative inline-block ${className}`}>
       <span
         ref={highlightRef}
-        className={`absolute inset-0 z-0 rounded-[0.08em] ${highlightColor}`}
+        className={`absolute inset-0 z-0 rounded-sm ${highlightColor}`}
         style={{
           left: "-0.1em",
           right: "-0.1em",

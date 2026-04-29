@@ -1,6 +1,5 @@
-import { Play, PlayIcon } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
-import gsap from "gsap"
+import { ArrowUpRight, Play } from "lucide-react"
+import { useState } from "react"
 
 import { cn } from "@/utils/utils"
 
@@ -88,62 +87,64 @@ const PROJECTS: Project[] = [
 ]
 
 function ProjectShow({ project }: { project?: Project }) {
- 
-
     if (!project) {
         return (
-            <div className="flex h-full min-h-112 items-center justify-center  border-red-800/50 bg-black/40 p-6">
-                <p className="text-sm font-mono text-red-400/50">
-                    Select a project to view details
+            <div className="flex min-h-112 items-center justify-center rounded-sm border border-brand-800/50 bg-card/70 p-6">
+                <p className="text-sm font-mono text-brand-400/70">
+                    Pick a project to preview details.
                 </p>
             </div>
         )
     }
 
     return (
-        <div
-            className="project-card group overflow-hidden border rounded animate-pulse border-red-800/50 bg-black/40 p-6 shadow-[0_0_40px_rgba(0,0,0,0.35)]"
-        >
-       
+        <div className="project-card relative min-h-112 overflow-hidden rounded-sm border border-brand-800/50 bg-linear-to-br from-card to-card/80 p-6 shadow-lg">
+            <div className="pointer-events-none absolute -top-16 -right-12 h-40 w-40 rounded-full bg-brand-500/15 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 -left-12 h-48 w-48 rounded-full bg-brand-700/15 blur-3xl" />
 
-                <div className="flex items-center justify-between gap-4">
-                    <p className="text-lg font-mono text-red-300">
-                        {project.title}
-                    </p>
+            <div className="relative z-10 flex h-full flex-col">
+                <div className="mb-6 flex items-start justify-between gap-4">
+                    <div>
+                        <p className="mb-2 font-mono text-xs uppercase tracking-widest text-brand-500">
+                            {project.type}
+                        </p>
+                        <h3 className="text-2xl font-(--font-bebas) tracking-tight text-brand-100 sm:text-3xl">
+                            {project.title}
+                        </h3>
+                    </div>
 
                     <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-full border border-red-800/60 p-2 text-red-400 transition-colors duration-300 hover:border-red-500/70 hover:text-red-300"
+                        className="inline-flex items-center gap-2 rounded-sm border border-brand-700/80 px-3 py-1.5 font-mono text-xs text-brand-300 transition-all duration-300 hover:border-brand-500 hover:text-brand-200"
                         aria-label={`Open ${project.title}`}
                     >
-                        <PlayIcon className="h-4 w-4" />
+                        Open
+                        <ArrowUpRight className="h-3.5 w-3.5" />
                     </a>
                 </div>
 
-                <div className="overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0 translate-y-2 group-hover:max-h-80 group-hover:opacity-100 group-hover:translate-y-0">
-                    <div className="space-y-3 pt-1">
-                        <p className="text-sm text-red-400">
-                            {project.type}
-                        </p>
+                <p className="text-sm leading-relaxed text-brand-300">
+                    {project.description}
+                </p>
 
-                        <p className="text-xs leading-relaxed text-red-300">
-                            {project.description}
-                        </p>
-
-                        <div className="flex flex-wrap gap-2">
-                            {project.tech.map((tech) => (
-                                <span
-                                    key={tech}
-                                    className="whitespace-nowrap border border-red-800 bg-black px-2 py-0.5 font-mono text-[10px] text-red-400"
-                                >
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
+                <div className="mt-6 border-t border-brand-800/50 pt-4">
+                    <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-brand-500/90">
+                        Stack
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                            <span
+                                key={tech}
+                                className="whitespace-nowrap rounded-sm border border-brand-700/60 bg-main/70 px-2.5 py-1 font-mono text-[10px] text-brand-300"
+                            >
+                                {tech}
+                            </span>
+                        ))}
                     </div>
                 </div>
+            </div>
             </div>
     )
 }
@@ -162,34 +163,35 @@ function ProjectRow({
     return (
         <div
             className={cn(
-                "group flex items-center gap-4 px-4 py-3 transition-all duration-200",
-                "border-b border-red-800/50 hover:border-red-600/50",
-                "hover:bg-red-500/10"
+                "group flex cursor-pointer items-center gap-4 px-4 py-3 transition-all duration-200",
+                "border-b border-brand-800/50 hover:border-brand-600/50",
+                "hover:bg-brand-500/10"
             )}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onClick={() => chooseProject(project)}
         >
             <div className="w-8 flex justify-center shrink-0">
                 {isHovered ? (
                     <button
                         onClick={() => chooseProject(project)}
-                        className="text-red-400 hover:text-red-300"
+                        className="text-brand-400 hover:text-brand-300"
                     >
                         <Play className="w-5 h-5 fill-current" />
                     </button>
                 ) : (
-                    <span className="text-sm text-red-400 font-mono">
+                    <span className="text-sm text-brand-400 font-mono">
                         {String(index + 1).padStart(2, "0")}
                     </span>
                 )}
             </div>
 
             <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-medium text-red-100 truncate group-hover:text-red-300 transition-colors">
+                <h3 className="text-sm font-medium text-brand-100 truncate group-hover:text-brand-300 transition-colors">
                     {project.title}
                 </h3>
 
-                <p className="text-xs text-red-400 truncate">
+                <p className="text-xs text-brand-400 truncate">
                     {project.type}
                 </p>
             </div>
@@ -198,7 +200,7 @@ function ProjectRow({
                 {project.tech.slice(0, 2).map((tech) => (
                     <span
                         key={tech}
-                        className="text-[10px] px-2 py-0.5 bg-black border border-red-800 text-red-400 font-mono whitespace-nowrap"
+                        className="text-[10px] px-2 py-0.5 bg-main border border-brand-800 text-brand-400 font-mono whitespace-nowrap"
                     >
                         {tech}
                     </span>
@@ -213,16 +215,14 @@ export default function WorkSection() {
         (project) => project.type !== "Incoming"
     )
 
-    const [selectedProject, setSelectedProject] = useState<
-        Project | undefined
-    >()
+    const [selectedProject, setSelectedProject] = useState<Project | undefined>(featuredProjects[0])
 
     return (
         <section
             id="work-section"
-            className="relative w-full px-4 sm:px-6 lg:px-8 py-12 bg-linear-to-br from-black via-black to-black"
+            className="relative w-full px-4 sm:px-6 lg:px-8 py-12"
         >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-red-100 mb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-brand-100 mb-8">
                 Featured Work
             </h2>
 

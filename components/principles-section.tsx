@@ -105,7 +105,7 @@ interface SectionHeaderProps {
 function SectionHeader({ ref, title }: SectionHeaderProps) {
   return (
     <div ref={ref} className="mb-16 sm:mb-20 md:mb-24">
-      <h2 className="font-(--font-bebas) text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-red-900 dark:text-red-100 leading-tight">
+      <h2 className="font-(--font-bebas) text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-brand-900 dark:text-brand-100 leading-tight">
         {title}
       </h2>
     </div>
@@ -122,14 +122,14 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
 
   return (
     <article className={`flex flex-col ${isRight ? "items-end text-right" : "items-start text-left"}`}>
-      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-red-500 mb-3 sm:mb-4 md:mb-6">
+      <span className="font-mono text-[10px] sm:text-xs uppercase tracking-widest text-brand-500 mb-3 sm:mb-4 md:mb-6">
         {principle.number} / {firstWord}
       </span>
 
-      <h3 className="font-(--font-bebas) text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-tight text-red-900 dark:text-red-100">
+      <h3 className="font-(--font-bebas) text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl tracking-tight leading-tight text-brand-900 dark:text-brand-100">
         {principle.titleParts.map((part, i) =>
           part.highlight ? (
-            <HighlightText key={i} parallaxSpeed={0.6} highlightColor="bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500">
+            <HighlightText key={i} parallaxSpeed={0.6} highlightColor="bg-gradient-to-r from-accent-dark via-accent-main to-accent-hover">
               {part.text}
             </HighlightText>
           ) : (
@@ -138,11 +138,11 @@ function PrincipleCard({ principle }: PrincipleCardProps) {
         )}
       </h3>
 
-      <p className="mt-4 sm:mt-6 md:mt-8 max-w-lg font-mono text-xs sm:text-sm md:text-base text-red-700 dark:text-red-300 leading-relaxed">
+      <p className="mt-4 sm:mt-6 md:mt-8 max-w-lg font-mono text-xs sm:text-sm md:text-base text-brand-700 dark:text-brand-300 leading-relaxed">
         {principle.description}
       </p>
 
-      <div className={cn("mt-6 sm:mt-8 md:mt-10 h-px bg-red-300 dark:bg-red-700 w-16 sm:w-20 md:w-24 lg:w-48", isRight ? "mr-0" : "ml-0")} />
+      <div className={cn("mt-6 sm:mt-8 md:mt-10 h-px bg-brand-300 dark:bg-brand-700 w-16 sm:w-20 md:w-24 lg:w-48", isRight ? "mr-0" : "ml-0")} />
     </article>
   )
 }

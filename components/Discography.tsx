@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/utils/utils";
-import { Play, ArrowRight, X, ExternalLink } from "lucide-react";
+import { Play, ArrowRight, X } from "lucide-react";
 
 interface Project {
     title: string
@@ -119,8 +119,8 @@ function ProjectCard({ project }: { project: Project }) {
             <div
                 className={cn(
                     "relative overflow-hidden transition-all duration-300",
-                    "bg-linear-to-br from-black to-black/80 border border-red-800",
-                    "hover:border-red-500 hover:shadow-xl"
+                    "bg-linear-to-br from-secondary to-card/90 border border-brand-800",
+                    "hover:border-brand-500 hover:shadow-xl"
                 )}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -129,16 +129,16 @@ function ProjectCard({ project }: { project: Project }) {
                     <div className="space-y-2">
                         <div className="flex items-start justify-between gap-2">
                             <div className="flex-1">
-                                <h3 className="text-base font-bold text-red-100 line-clamp-2">
+                                <h3 className="text-base font-bold text-brand-100 line-clamp-2">
                                     {project.title}
                                 </h3>
-                                <p className="text-xs text-red-500 mt-1">
+                                <p className="text-xs text-brand-500 mt-1">
                                     {project.type}
                                 </p>
                             </div>
                             <Play className={cn(
                                 "w-5 h-5 transition-all duration-300 shrink-0",
-                                isHovered ? "text-red-400 translate-x-0" : "text-red-700 translate-x-1"
+                                isHovered ? "text-brand-400 translate-x-0" : "text-brand-700 translate-x-1"
                             )} />
                         </div>
                     </div>
@@ -147,13 +147,13 @@ function ProjectCard({ project }: { project: Project }) {
                         {project.tech.slice(0, 3).map((t) => (
                             <span 
                                 key={t} 
-                                className="text-xs px-2 py-1 bg-red-600/15 text-red-400 rounded border border-red-600/30 transition-colors"
+                                className="text-xs px-2 py-1 bg-brand-600/15 text-brand-400 rounded-sm border border-brand-600/30 transition-colors"
                             >
                                 {t}
                             </span>
                         ))}
                         {project.tech.length > 3 && (
-                            <span className="text-xs px-2 py-1 bg-red-600/15 text-red-500 rounded border border-red-600/30">
+                            <span className="text-xs px-2 py-1 bg-brand-600/15 text-brand-500 rounded-sm border border-brand-600/30">
                                 +{project.tech.length - 3}
                             </span>
                         )}
@@ -161,14 +161,14 @@ function ProjectCard({ project }: { project: Project }) {
 
                     <div className={cn(
                         "text-xs leading-relaxed transition-all duration-300",
-                        isHovered ? "text-red-200 opacity-100" : "text-red-400 opacity-60"
+                        isHovered ? "text-brand-200 opacity-100" : "text-brand-400 opacity-60"
                     )}>
                         {project.description}
                     </div>
                 </div>
 
                 <div className={cn(
-                    "absolute top-0 left-0 right-0 h-0.5 bg-red-500 transition-all duration-300",
+                    "absolute top-0 left-0 right-0 h-0.5 bg-brand-500 transition-all duration-300",
                     isHovered ? "opacity-100" : "opacity-0"
                 )} />
             </div>
@@ -199,8 +199,8 @@ function TabButton({ active, onClick, children }: TabButtonProps) {
             className={cn(
                 "pb-3 px-1 font-medium transition-all border-b-2",
                 active
-                    ? "text-red-100 border-red-400"
-                    : "text-red-400 border-transparent hover:text-red-300"
+                    ? "text-brand-100 border-brand-400"
+                    : "text-brand-400 border-transparent hover:text-brand-300"
             )}
         >
             {children}
@@ -212,75 +212,84 @@ function AllProjectsPanel({ projects, isOpen, onClose, type }: { projects: Proje
     if (!isOpen) return null
 
     return (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-linear-to-b from-red-900/20 to-black border border-red-800 rounded w-full max-w-6xl max-h-[90vh] flex flex-col" onClick={(e) => e.stopPropagation()}>
-                {/* Header */}
-                <div className="flex items-center justify-between p-8 border-b border-red-800">
-                    <h3 className="text-3xl font-bold text-red-100">{type}</h3>
-                    <button
-                        onClick={onClose}
-                        className="text-red-400 hover:text-red-300 transition-colors"
-                    >
-                        <X className="w-6 h-6" />
-                    </button>
+        <div className="fixed inset-0 bg-main/85 backdrop-blur-lg z-50 flex items-center justify-center p-4" onClick={onClose}>
+            <div className="bg-linear-to-br from-secondary to-card w-full max-w-7xl max-h-[90vh] flex flex-col overflow-hidden rounded-sm border border-brand-800/60 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+                {/* Header bar */}
+                <div className="relative">
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-brand-700 via-brand-500 to-brand-400" />
+                    <div className="flex items-center justify-between p-8 border-b border-brand-800/40">
+                        <div className="space-y-2">
+                            <h3 className="text-5xl md:text-3xl font-(--font-bebas) tracking-tight text-brand-100">{type}</h3>
+                            <p className="text-xs text-brand-500 font-mono uppercase tracking-widest">All {projects.length} Projects</p>
+                        </div>
+                        <button
+                            onClick={onClose}
+                            className="p-3 hover:bg-brand-800/20 transition-colors rounded-sm border border-brand-800/30 group"
+                        >
+                            <X className="w-6 h-6 text-brand-400 group-hover:text-brand-300 transition-colors" />
+                        </button>
+                    </div>
                 </div>
 
                 <div className="overflow-y-auto flex-1 p-8">
-                    <div className="flex flex-col gap-6">
-                        {projects.map((project) => (
+                    <div className="space-y-3">
+                        {projects.map((project, index) => (
                             <a
                                 key={project.title}
                                 href={project.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group"
+                                className="group block"
                             >
-                                <div className="relative overflow-hidden rounded transition-all duration-300 bg-linear-to-br from-black to-black/80 border border-red-800 hover:border-red-500 hover:shadow-lg h-full flex flex-col">
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="relative overflow-hidden transition-all duration-300 bg-linear-to-r from-card/60 to-secondary/40 hover:from-card hover:to-card/70 border border-brand-800/40 hover:border-brand-500/60 hover:shadow-lg rounded-sm px-6 py-4 flex items-center justify-between gap-6 h-20">
+                                    <div className="absolute inset-0 bg-linear-to-r from-brand-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     
-                                    <div className="absolute top-4 right-4 z-10">
-                                        <div className="w-12 h-12 ">
-                                            <Play className="w-6 h-6 text-white/80 fill-black" />
-                                        </div>
-                                    </div>
+                                    {/* Index */}
+                                    <div className="relative z-10 flex items-center gap-4 flex-1 min-w-0">
+                                        <span className="text-brand-500/60 group-hover:text-brand-500 transition-colors font-mono text-sm font-bold w-8 text-right shrink-0">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </span>
 
-                                    <div className="p-6 flex flex-col justify-between h-full relative z-0">
-                                        <div className="space-y-3">
-                                            <h4 className="text-2xl font-bold text-red-100 group-hover:text-red-300 transition-colors line-clamp-2">
+                                        {/* Content */}
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="text-base font-bold text-brand-100 group-hover:text-brand-300 transition-colors truncate">
                                                 {project.title}
                                             </h4>
-                                            <p className="text-xs text-red-500 font-semibold uppercase tracking-wide">
-                                                {project.type}
-                                            </p>
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            <p className="text-sm text-red-300 line-clamp-3">
-                                                {project.description}
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {project.tech.slice(0, 4).map((t) => (
-                                                    <span
-                                                        key={t}
-                                                        className="text-xs px-2.5 py-1 bg-red-600/20 text-red-300 rounded-full border border-red-600/40 group-hover:bg-red-600/30 group-hover:text-red-200 transition-colors"
-                                                    >
-                                                        {t}
-                                                    </span>
-                                                ))}
-                                                {project.tech.length > 4 && (
-                                                    <span className="text-xs px-2.5 py-1 bg-red-600/20 text-red-400 rounded-full border border-red-600/40 group-hover:bg-red-600/30 transition-colors">
-                                                        +{project.tech.length - 4}
-                                                    </span>
-                                                )}
+                                            <div className="flex items-center gap-3 mt-0.5">
+                                                <p className="text-xs font-mono uppercase tracking-widest text-brand-500/80 group-hover:text-brand-500 transition-colors whitespace-nowrap">
+                                                    {project.type}
+                                                </p>
+                                                <span className="text-xs text-brand-500/40 shrink-0">•</span>
+                                                <p className="text-xs text-brand-400 truncate">
+                                                    {project.description}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className={cn(
-                                        "absolute top-0 left-0 right-0 h-0.5 bg-red-500 transition-all duration-300",
-                                        "opacity-0 group-hover:opacity-100"
-                                    )} />
+                                    {/* Tech tags */}
+                                    <div className="relative z-10 flex items-center gap-2 flex-wrap justify-end shrink-0">
+                                        {project.tech.slice(0, 2).map((t) => (
+                                            <span
+                                                key={t}
+                                                className="text-xs px-2.5 py-1 bg-brand-500/15 text-brand-500 rounded-sm border border-brand-500/40 group-hover:bg-brand-500/25 group-hover:border-brand-500/60 transition-all duration-300 font-mono whitespace-nowrap"
+                                            >
+                                                {t}
+                                            </span>
+                                        ))}
+                                        {project.tech.length > 2 && (
+                                            <span className="text-xs px-2.5 py-1 bg-brand-500/15 text-brand-400 rounded-sm border border-brand-500/40 group-hover:bg-brand-500/25 group-hover:border-brand-500/60 transition-all duration-300 font-mono">
+                                                +{project.tech.length - 2}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* Play icon */}
+                                    <div className="relative z-10 p-2.5 bg-brand-500/0 group-hover:bg-brand-500/20 rounded-sm transition-all duration-300 shrink-0">
+                                        <Play className="w-5 h-5 text-brand-500/60 group-hover:text-brand-500 fill-brand-500/60 group-hover:fill-brand-500 transition-all duration-300" />
+                                    </div>
+
+                                    <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-brand-500 to-transparent transition-all duration-300 opacity-0 group-hover:opacity-100" />
                                 </div>
                             </a>
                         ))}
@@ -298,13 +307,13 @@ export default function NewDiscography() {
     const allProjects = activeTab === 'singles' ? SINGLE_PROJECTS : FEATURED_PROJECTS
 
     return (
-        <div className="relative flex flex-col w-full px-4 sm:px-6 lg:px-8 py-12 bg-linear-to-br from-black via-black to-black">
+        <div className="relative flex flex-col w-full px-4 sm:px-6 lg:px-8 py-12">
             <div className="max-w-7xl w-full">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-red-100 mb-8">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl font-(--font-bebas) tracking-tight text-brand-100 mb-8">
                     Discography
                 </h2>
 
-                <div className="flex gap-8 border-b border-red-700 mb-8 items-center justify-between">
+                <div className="flex gap-8 border-b border-brand-700 mb-8 items-center justify-between">
                     <div className="flex gap-8">
                         <TabButton 
                             active={activeTab === 'singles'} 
@@ -324,7 +333,7 @@ export default function NewDiscography() {
                             onClick={() => setShowAll(true)}
                             className={cn(
                                 "pb-3 px-1 font-medium transition-all border-b-2 flex items-center gap-2",
-                                "text-red-400 border-transparent hover:text-red-300"
+                                "text-brand-400 border-transparent hover:text-brand-300"
                             )}
                         >
                             Show All

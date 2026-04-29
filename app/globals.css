@@ -2,18 +2,25 @@
 @config "../tailwind.config.ts";
 
 :root {
-  --background: #fff7ed;
-  --foreground: #3f2213;
+  --background: #0d0d0d;
+  --foreground: #eae6df;
+  --background-secondary: #161616;
+  --surface: #1e1e1e;
+  --accent-main: #8b5cf6;
+  --accent-hover: #a78bfa;
+  --accent-dark: #6d28d9;
+  --text-secondary: #b8b1a7;
+  --text-muted: #8b8b8b;
+  --border-main: #2a2a2a;
+  --border-soft: #3a3a3a;
+  --success: #6b8f71;
+  --warning: #b08968;
+  --error: #a44a3f;
+  --brand-glow: rgba(139, 92, 246, 0.15);
+  --soft-dark-overlay: rgba(0, 0, 0, 0.45);
   --font-geist-sans: system-ui, -apple-system, sans-serif;
   --font-geist-mono: 'Courier New', monospace;
   --font-bebas: 'Bebas Neue', sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #251208;
-    --foreground: #fde7ce;
-  }
 }
 
 html {
@@ -21,7 +28,9 @@ html {
 }
 
 body {
-  @apply min-h-full overflow-x-hidden bg-black text-neutral-100;
+  @apply min-h-full overflow-x-hidden;
+  background-color: var(--background);
+  color: var(--foreground);
   position: relative;
   isolation: isolate;
 }
@@ -33,23 +42,23 @@ body::before {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.16) 58%, rgba(0, 0, 0, 0.58) 100%),
+    radial-gradient(circle at center, transparent 0%, rgba(139, 92, 246, 0.08) 58%, rgba(0, 0, 0, 0.62) 100%),
     repeating-linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.03) 0,
-      rgba(255, 255, 255, 0.03) 1px,
+      rgba(58, 58, 58, 0.18) 0,
+      rgba(58, 58, 58, 0.18) 1px,
       transparent 1px,
       transparent 3px
     ),
     repeating-linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.02) 0,
-      rgba(255, 255, 255, 0.02) 1px,
+      rgba(58, 58, 58, 0.12) 0,
+      rgba(58, 58, 58, 0.12) 1px,
       transparent 1px,
       transparent 4px
     );
   mix-blend-mode: soft-light;
-  opacity: 0.35;
+  opacity: 0.5;
 }
 
 body::after {
@@ -58,11 +67,25 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.45));
-  opacity: 0.8;
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.06), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.45));
+  opacity: 0.85;
 }
 
-@keyframes red-drift {
+@layer utilities {
+  .text-main {
+    color: var(--foreground);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+}
+
+@keyframes brand-drift {
   0% {
     transform: translate3d(-3%, -2%, 0) scale(0.95);
   }
@@ -74,7 +97,7 @@ body::after {
   }
 }
 
-@keyframes red-swell {
+@keyframes brand-swell {
   0%,
   100% {
     transform: scale(1) rotate(0deg);
@@ -86,7 +109,7 @@ body::after {
   }
 }
 
-@keyframes red-glide {
+@keyframes brand-glide {
   0% {
     transform: translate3d(-2%, 1.8%, 0);
     opacity: 0.4;
@@ -98,16 +121,16 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .red-flow,
-  .red-flow::before,
-  .red-flow::after {
+  .brand-flow,
+  .brand-flow::before,
+  .brand-flow::after {
     animation: none;
   }
 }
 
 .grid-bg {
   @apply pointer-events-none fixed inset-0 -z-10 opacity-8;
-  background-image: linear-gradient(to right, #ffffff12 1px, transparent 1px),
-    linear-gradient(to bottom, #ffffff12 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(58, 58, 58, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(58, 58, 58, 0.28) 1px, transparent 1px);
   background-size: 50px 50px;
 }
