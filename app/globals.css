@@ -2,13 +2,13 @@
 @config "../tailwind.config.ts";
 
 :root {
-  --background: #0d0d0d;
+  --background: #000000;
   --foreground: #eae6df;
   --background-secondary: #161616;
   --surface: #1e1e1e;
-  --accent-main: #8b5cf6;
-  --accent-hover: #a78bfa;
-  --accent-dark: #6d28d9;
+  --accent-main: #47606e;
+  --accent-hover: #647f8c;
+  --accent-dark: #344d58;
   --text-secondary: #b8b1a7;
   --text-muted: #8b8b8b;
   --border-main: #2a2a2a;
@@ -41,24 +41,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background:
-    radial-gradient(circle at center, transparent 0%, rgba(139, 92, 246, 0.08) 58%, rgba(0, 0, 0, 0.62) 100%),
-    repeating-linear-gradient(
-      to right,
-      rgba(58, 58, 58, 0.18) 0,
-      rgba(58, 58, 58, 0.18) 1px,
-      transparent 1px,
-      transparent 3px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      rgba(58, 58, 58, 0.12) 0,
-      rgba(58, 58, 58, 0.12) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  mix-blend-mode: soft-light;
-  opacity: 0.5;
+  background: none;
+  opacity: 0;
 }
 
 body::after {
@@ -67,8 +51,8 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.06), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.45));
-  opacity: 0.85;
+  background: none;
+  opacity: 0;
 }
 
 @layer utilities {
@@ -89,20 +73,24 @@ body::after {
   0% {
     transform: translate3d(-3%, -2%, 0) scale(0.95);
   }
+
   50% {
     transform: translate3d(1%, 1.5%, 0) scale(1.02);
   }
+
   100% {
     transform: translate3d(3%, -2.5%, 0) scale(1);
   }
 }
 
 @keyframes brand-swell {
+
   0%,
   100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.5;
   }
+
   50% {
     transform: scale(1.08) rotate(3deg);
     opacity: 0.7;
@@ -114,6 +102,7 @@ body::after {
     transform: translate3d(-2%, 1.8%, 0);
     opacity: 0.4;
   }
+
   100% {
     transform: translate3d(2%, -1.8%, 0);
     opacity: 0.6;
@@ -121,6 +110,7 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .brand-flow,
   .brand-flow::before,
   .brand-flow::after {
